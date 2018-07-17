@@ -28,7 +28,7 @@ for(var i in Data.shoppingCart){
         "<div class=\"close1\"> </div>"+
         "<div class=\"cart-sec simpleCart_shelfItem\">"+
                 "<div class=\"cart-item cyc\">"+
-                    "<img src=\"images/resistor.jpg\" class=\"img-responsive\" alt=\"\"/>"+
+                    "<img src=\"../images/"+Data.shoppingCart[i].imagem+"\" class=\"img-responsive\" alt=\"\"/>"+
                 "</div>"+
             "<div class=\"cart-item-info\">"+ 
                     "<h3><a href=\"single.html\">"+ Data.shoppingCart[i].nome +"</a><span>"+ Data.shoppingCart[i].descricao +"</span></h3>"+

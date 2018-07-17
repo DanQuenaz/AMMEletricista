@@ -1,10 +1,11 @@
 //Cart Itens
-export var Item = function(id, nome, descricao, preco, quant){
+export var Item = function(id, nome, descricao, preco, quant, imagem){
     this.id = id;
     this.nome = nome;
     this.descricao = descricao;
     this.preco = preco;
     this.quant = quant;
+    this.imagem = imagem;
 }
 
 export var shoppingCart = [];
@@ -22,8 +23,8 @@ export function loadCart(){
    }
 }
 
-export function addItem(id, nome, descricao, preco, quant){
-    var auxItem = new Item(id, nome, descricao, preco, quant);
+export function addItem(id, nome, descricao, preco, quant, imagem){
+    var auxItem = new Item(id, nome, descricao, preco, quant, imagem);
     for(var i in shoppingCart){
         if(shoppingCart[i].id === auxItem.id){
             shoppingCart[i].quant += quant;

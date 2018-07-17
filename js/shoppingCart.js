@@ -11,10 +11,9 @@ $(".item_add").click(function(event){
     var _nome = $(this).attr("data-name");
     var _descricao = $(this).attr("data-description");
     var _preco = Number( $(this).attr("data-price") );
-    
-    console.log("YUUUP");
+    var _imagem = $(this).attr("data-imagem");
 
-    Data.addItem(_id, _nome, _descricao, _preco, 1);
+    Data.addItem(_id, _nome, _descricao, _preco, 1, _imagem);
 
     Data.updateCart();
 });

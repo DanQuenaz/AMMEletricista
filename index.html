@@ -34,11 +34,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
 	<div class="header-top">
 		<div class="container">
-			<div class="search">
-					<form>
-						<input type="text" value="Search " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-						<input type="submit" value="Go">
-					</form>
+			<div class="search">	
+				<input type="text" value="Pesquisar " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" id="inputSearch">
+				<input type="submit" value="Pesquisar" id="btnSearch">
+				<script>
+					document.getElementById('btnSearch').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "3,"+document.getElementById('inputSearch').value;
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>	
 			</div>
 			<div class="header-left">		
 					<ul>
@@ -214,70 +223,371 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="content-top">
 		<h1>CATEGORIAS</h1>
 		<div class="grid-in">
+
 			<div class="col-md-4 grid-top">
-				<a href="products.php" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="images/resistor.jpg" alt="">
+				<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat1"><img class="img-responsive" src="images/resistor.jpg" alt="">
 						<div class="b-wrapper">
 							<h3 class="b-animate b-from-left    b-delay03 ">
-								<span>Categoria 1</span>	
+								<span>Peças e Componentes Industriais</span>	
 							</h3>
 						</div>
 				</a>
-		
+				<script>
+					document.getElementById('cat1').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Peças e Componentes Industriais";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
+			<p><a href="products.php" id="catl1">Peças e Componentes Industriais</a></p>
+			<script>
+				document.getElementById('catl1').onclick = function() {
+					var cname = "1AMM-AX001";
+					var cvalue = "1,Peças e Componentes Industriais";
+					var d = new Date();
+					d.setTime(d.getTime() + (1*3*1000));
+					var expires = "expires="+ d.toUTCString();
+					document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+					window.open("./products.php","_self");
+				};
+			</script>
+			</div>
 
-			<p><a href="products.php">Categoria 1</a></p>
-			</div>
 			<div class="col-md-4 grid-top">
-				<a href="products.php" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="images/resistor.jpg" alt="">
+				<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat2"><img class="img-responsive" src="images/resistor.jpg" alt="">
 					<div class="b-wrapper">
 						<h3 class="b-animate b-from-left    b-delay03 ">
-							<span>Categoria 2</span>	
+							<span>Condutores</span>	
 						</h3>
 					</div>
 				</a>
-			<p><a href="products.php">Categoria 2</a></p>
+				<script>
+					document.getElementById('cat2').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Peças e Componentes Industriais";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
+			<p><a href="products.php" id="catl2">Condutores</a></p>
+			<script>
+				document.getElementById('catl2').onclick = function() {
+					var cname = "1AMM-AX001";
+					var cvalue = "1,Peças e Componentes Industriais";
+					var d = new Date();
+					d.setTime(d.getTime() + (1*3*1000));
+					var expires = "expires="+ d.toUTCString();
+					document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+					window.open("./products.php","_self");
+				};
+			</script>
 			</div>
+
 			<div class="col-md-4 grid-top">
-				<a href="products.php" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="images/resistor.jpg" alt="">
+				<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat3"><img class="img-responsive" src="images/resistor.jpg" alt="">
 					<div class="b-wrapper">
 						<h3 class="b-animate b-from-left    b-delay03 ">
-							<span>Categoria 3</span>	
+							<span>Banho e Aquecimento</span>	
 						</h3>
 					</div>
 				</a>
-			<p><a href="products.php">Categoria 3</a></p>
+				<script>
+					document.getElementById('cat3').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Banho e Aquecimento";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
+			<p><a href="products.php" id="catl3">Banho e Aquecimento</a></p>
+			<script>
+				document.getElementById('catl3').onclick = function() {
+					var cname = "1AMM-AX001";
+					var cvalue = "1,Banho e Aquecimento";
+					var d = new Date();
+					d.setTime(d.getTime() + (1*3*1000));
+					var expires = "expires="+ d.toUTCString();
+					document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+					window.open("./products.php","_self");
+				};
+			</script>
 			</div>
 					<div class="clearfix"> </div>
 		</div>
+
 		<div class="grid-in">
 				<div class="col-md-4 grid-top">
-					<a href="products.php" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="images/resistor.jpg" alt="">
+					<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat4"><img class="img-responsive" src="images/resistor.jpg" alt="">
 						<div class="b-wrapper">
 							<h3 class="b-animate b-from-left    b-delay03 ">
-								<span>Categoria 4</span>	
+								<span>Caixas e Quadros</span>	
 							</h3>
 						</div>
 					</a>
-				<p><a href="products.php">Categoria 4</a></p>
+					<script>
+						document.getElementById('cat4').onclick = function() {
+							var cname = "1AMM-AX001";
+							var cvalue = "1,Caixas e Quadros";
+							var d = new Date();
+							d.setTime(d.getTime() + (1*3*1000));
+							var expires = "expires="+ d.toUTCString();
+							document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+							window.open("./products.php","_self");
+						};
+					</script>
+				<p><a href="products.php" id="catl4">Caixas e Quadros </a></p>
+				<script>
+					document.getElementById('catl4').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Caixas e Quadros";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
 				</div>
+
 				<div class="col-md-4 grid-top">
-					<a href="products.php" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="images/resistor.jpg" alt="">
+					<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat5"><img class="img-responsive" src="images/resistor.jpg" alt="">
 						<div class="b-wrapper">
 							<h3 class="b-animate b-from-left    b-delay03 ">
-								<span>Categoria 5</span>	
+								<span>Eletrodutos e Conduletes</span>	
 							</h3>
 						</div>
 					</a>
-				<p><a href="products.php">Categoria 5</a></p>
+					<script>
+						document.getElementById('cat5').onclick = function() {
+							var cname = "1AMM-AX001";
+							var cvalue = "1,Eletrodutos e Conduletes";
+							var d = new Date();
+							d.setTime(d.getTime() + (1*3*1000));
+							var expires = "expires="+ d.toUTCString();
+							document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+							window.open("./products.php","_self");
+						};
+					</script>
+				<p><a href="products.php" id="catl5">Eletrodutos e Conduletes </a></p>
+				<script>
+					document.getElementById('catl5').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Eletrodutos e Conduletes";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
 				</div>
+
 				<div class="col-md-4 grid-top">
-					<a href="products.php" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="images/resistor.jpg" alt="">
+					<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat6"><img class="img-responsive" src="images/resistor.jpg" alt="">
 						<div class="b-wrapper">
 							<h3 class="b-animate b-from-left    b-delay03 ">
-								<span>Categoria 6</span>	
+								<span>Dispositivos de Proteção Elétrica</span>	
 							</h3>
 						</div>
 					</a>
-				<p><a href="products.php">Categoria 6</a></p>
+					<script>
+						document.getElementById('cat6').onclick = function() {
+							var cname = "1AMM-AX001";
+							var cvalue = "1,Dispositivos de Proteção Elétrica";
+							var d = new Date();
+							d.setTime(d.getTime() + (1*3*1000));
+							var expires = "expires="+ d.toUTCString();
+							document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+							window.open("./products.php","_self");
+						};
+					</script>
+				<p><a href="products.php" id="catl6">Dispositivos de Proteção Elétrica </a></p>
+				<script>
+					document.getElementById('catl6').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Dispositivos de Proteção Elétrica";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
+				</div>
+
+				<div class="col-md-4 grid-top">
+					<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat7"><img class="img-responsive" src="images/resistor.jpg" alt="">
+						<div class="b-wrapper">
+							<h3 class="b-animate b-from-left    b-delay03 ">
+								<span>Ferramentas</span>	
+							</h3>
+						</div>
+					</a>
+					<script>
+						document.getElementById('cat7').onclick = function() {
+							var cname = "1AMM-AX001";
+							var cvalue = "1,Ferramentas";
+							var d = new Date();
+							d.setTime(d.getTime() + (1*3*1000));
+							var expires = "expires="+ d.toUTCString();
+							document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+							window.open("./products.php","_self");
+						};
+					</script>
+				<p><a href="products.php" id="catl7">Ferramentas</a></p>
+				<script>
+					document.getElementById('catl7').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Ferramentas";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
+				</div>
+
+				<div class="col-md-4 grid-top">
+					<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat8"><img class="img-responsive" src="images/resistor.jpg" alt="">
+						<div class="b-wrapper">
+							<h3 class="b-animate b-from-left    b-delay03 ">
+								<span>Informática</span>	
+							</h3>
+						</div>
+					</a>
+					<script>
+						document.getElementById('cat8').onclick = function() {
+							var cname = "1AMM-AX001";
+							var cvalue = "1,Informática";
+							var d = new Date();
+							d.setTime(d.getTime() + (1*3*1000));
+							var expires = "expires="+ d.toUTCString();
+							document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+							window.open("./products.php","_self");
+						};
+					</script>
+				<p><a href="products.php" id="catl8">Informática</a></p>
+				<script>
+					document.getElementById('catl8').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Informática";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
+				</div>
+
+				<div class="col-md-4 grid-top">
+					<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat9"><img class="img-responsive" src="images/resistor.jpg" alt="">
+						<div class="b-wrapper">
+							<h3 class="b-animate b-from-left    b-delay03 ">
+								<span>Interruptores e Tomadas</span>	
+							</h3>
+						</div>
+					</a>
+					<script>
+						document.getElementById('cat9').onclick = function() {
+							var cname = "1AMM-AX001";
+							var cvalue = "1,Interruptores e Tomadas";
+							var d = new Date();
+							d.setTime(d.getTime() + (1*3*1000));
+							var expires = "expires="+ d.toUTCString();
+							document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+							window.open("./products.php","_self");
+						};
+					</script>
+				<p><a href="products.php" id="catl9">Interruptores e Tomadas</a></p>
+				<script>
+					document.getElementById('catl9').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Interruptores e Tomadas";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
+				</div>
+
+				<div class="col-md-4 grid-top">
+					<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat10"><img class="img-responsive" src="images/resistor.jpg" alt="">
+						<div class="b-wrapper">
+							<h3 class="b-animate b-from-left    b-delay03 ">
+								<span>Segurança</span>	
+							</h3>
+						</div>
+					</a>
+					<script>
+						document.getElementById('cat10').onclick = function() {
+							var cname = "1AMM-AX001";
+							var cvalue = "1,Segurança";
+							var d = new Date();
+							d.setTime(d.getTime() + (1*3*1000));
+							var expires = "expires="+ d.toUTCString();
+							document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+							window.open("./products.php","_self");
+						};
+					</script>
+				<p><a href="products.php" id="catl10">Segurança</a></p>
+				<script>
+					document.getElementById('catl10').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Segurança";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
+				</div>
+
+				<div class="col-md-4 grid-top">
+					<a href="products.php" class="b-link-stripe b-animate-go  thickbox" id="cat11"><img class="img-responsive" src="images/resistor.jpg" alt="">
+						<div class="b-wrapper">
+							<h3 class="b-animate b-from-left    b-delay03 ">
+								<span>Automação</span>	
+							</h3>
+						</div>
+					</a>
+					<script>
+						document.getElementById('cat11').onclick = function() {
+							var cname = "1AMM-AX001";
+							var cvalue = "1,Automação";
+							var d = new Date();
+							d.setTime(d.getTime() + (1*3*1000));
+							var expires = "expires="+ d.toUTCString();
+							document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+							window.open("./products.php","_self");
+						};
+					</script>
+				<p><a href="products.php" id="catl11">Automação</a></p>
+				<script>
+					document.getElementById('catl11').onclick = function() {
+						var cname = "1AMM-AX001";
+						var cvalue = "1,Automação";
+						var d = new Date();
+						d.setTime(d.getTime() + (1*3*1000));
+						var expires = "expires="+ d.toUTCString();
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+						window.open("./products.php","_self");
+					};
+				</script>
 				</div>
 					<div class="clearfix"> </div>
 		</div>
