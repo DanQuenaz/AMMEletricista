@@ -34,3 +34,7 @@ export function addUser(uid, nome, email, enderco){
     userLoged.push(auxUser);
     saveUser();
 }
+
+export function deleteUser(){
+    sessionStorage.removeItem("lOged");
+}

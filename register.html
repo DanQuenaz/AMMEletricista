@@ -50,11 +50,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li id="campRegister"><a  href="register.html">Register</a></li>
 					</ul>
 					<div class="cart box_1">
-						<a href="checkout.php">
+						<a href="checkout.php" id="checkoutClick">
 						<h3> <div class="total">
 							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> itens)</div>
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
+						<script type="module">
+							import * as DATA from './js/dataCart';
+							document.getElementById('checkoutClick').onclick = function(){
+								DATA.loadCart();
+								DATA.saveCartCookie();
+							};
+						</script>
 						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 
 					</div>
@@ -171,35 +178,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h3>Informações Pessoais</h3>
 				<div>
 					<span>Primeiro Nome</span>
-					<input type="text" name="firstName" id="firstName"> 
+					<input type="text" name="firstName" id="firstName" required autofocus> 
 				</div>
 				<div>
 					<span>Sobrenome</span>
-					<input type="text" name="lastName" id="lastName"> 
+					<input type="text" name="lastName" id="lastName" required> 
 				</div>
 				<div>
 					<span>CPF</span>
-					<input type="text" name="cpf" id="cpf"> 
+					<input type="text" name="cpf" id="cpf" required> 
 				</div>
 				<div>
 					<span>Estado</span>
-					<input type="text" name="stateName" id="stateName"> 
+					<input type="text" name="stateName" id="stateName" required> 
 				</div>
 				<div>
 					<span>Cidade</span>
-					<input type="text" name="cityName" id="cityName"> 
+					<input type="text" name="cityName" id="cityName" required> 
 				</div>
 				<div>
 					<span>Endereço</span>
-					<input type="text" name="address" id="addressName"> 
+					<input type="text" name="address" id="addressName" required> 
 			</div>
 			<div>
 				<span>Bairro</span>
-				<input type="text" name="bairroName" id="bairroName"> 
+				<input type="text" name="bairroName" id="bairroName" required> 
 			</div>
 			<div>
 				<span>CEP</span>
-				<input type="text" name="cep" id="cep"> 
+				<input type="text" name="cep" id="cep" required> 
+			</div>
+			<div>
+				<span>Telefone</span>
+				<input type="text" name="tel" id="tel" required> 
 			</div>
 				<a class="news-letter" href="#">
 					<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Receber promoções!</label>
@@ -209,19 +220,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>Informações de Login</h3>
 					<div>
 						<span>Email</span>
-						<input type="text" name="email" id="email">
+						<input type="text" name="email" id="email" required>
 						</div>
 						<div>
 							<span>Confirme o Email</span>
-							<input type="text" name="confirmEmail" id="confirmEmail">
+							<input type="text" name="confirmEmail" id="confirmEmail" required>
 						</div>
 						<div>
 							<span>Senha</span>
-							<input type="password" name="password" id="password">
+							<input type="password" name="password" id="password" required>
 						</div>
 						<div>
 							<span>Confirme a Senha</span>
-							<input type="password" name="confirmPassword" id="confirmPassword">
+							<input type="password" name="confirmPassword" id="confirmPassword" required>
 						</div>
 						<input type="submit" value="Confirmar" name="cadastrar" id="cadastrar">
 					

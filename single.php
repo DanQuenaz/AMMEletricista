@@ -55,18 +55,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			<div class="header-left">		
 					<ul>
-						<li ><a class="lock"  href="login.html"  >Login</a></li>
-						<li><a class="lock" href="register.html"  >Register</a></li>
-						<li>
-</li>
-
+						<li id="campLogin"><a href="login.php">Login</a></li>
+						<li id="campRegister"><a  href="register.html">Register</a></li>
 					</ul>
 					<div class="cart box_1">
-						<a href="checkout.php">
+						<a href="checkout.php" id="checkoutClick">
 						<h3> <div class="total">
 							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
+						<script type="module">
+							import * as DATA from './js/dataCart';
+							document.getElementById('checkoutClick').onclick = function(){
+								DATA.loadCart();
+								DATA.saveCartCookie();
+							};
+						</script>
 						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 
 					</div>

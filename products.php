@@ -48,7 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li id="campRegister"><a  href="register.html">Register</a></li>
 					</ul>
 					<div class="cart box_1">
-						<a href="checkout.php" id="checkoutClick">
+						<a href="checkout.php" id="checkoutClick" id="checkoutClick">
 						<h3> <div class="total">
 							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
 							<img src="images/cart.png" alt=""/></h3>

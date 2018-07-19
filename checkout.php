@@ -50,11 +50,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li id="campRegister"><a  href="register.html">Register</a></li>
 					</ul>
 					<div class="cart box_1">
-						<a href="checkout.php">
+						<a href="checkout.php" id="checkoutClick">
 						<h3> <div class="total">
 							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
+						<script type="module">
+							import * as DATA from './js/dataCart';
+							document.getElementById('checkoutClick').onclick = function(){
+								DATA.loadCart();
+								DATA.saveCartCookie();
+							};
+						</script>
 						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 
 					</div>
@@ -164,14 +171,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <div class="container">
 	<div class="check">	 
-			 <h1>My Shopping Bag (2)</h1>
-		 <div class="col-md-9 cart-items">
-			<div id="productsCheckout">
 				<?php
 					if( isset($_COOKIE["1AMM-CT001"]) ){
 						$data = json_decode( $_COOKIE["1AMM-CT001"], true );
 						$max = sizeof($data);
 						$total = 0;
+						echo"
+						<h1>Meu Carrinho (".$max.")</h1>
+						<div class='col-md-9 cart-items'>
+						<div id='productsCheckout'>";
 						for($i=0; $i<$max; $i++){
 							$subtotal = $data[$i]["quant"] * $data[$i]["preco"];
 							$total += $subtotal;
@@ -194,7 +202,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											 <img src='../images/".$data[$i]["imagem"]."' class='img-responsive' alt=''/>
 										 </div>
 									 <div class='cart-item-info'>
-											 <h3><a href='single.html'>".$data[$i]["nome"]."</a><span>".$data[$i]["descricao"]."</span></h3>
+											 <h3><a href='single.php?itemid=".$data[$i]["id"]."'>".$data[$i]["nome"]."</a><span>".$data[$i]["descricao"]."</span></h3>
 											 <ul class='qty'>
 												 <li><p>Quantidade: ".$data[$i]["quant"]."</p></li><br>
 												 <li><p>Prç. unitário: R$".$data[$i]["preco"]."</p></li><br>
@@ -208,6 +216,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									 <div class='clearfix'></div>                       
 								 </div>
 							 </div>";
+						}
+						if($max == 0){
+							echo"Carrinho vazio!";
 						}
 						echo"
 						</div>

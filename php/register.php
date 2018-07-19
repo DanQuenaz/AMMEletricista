@@ -10,6 +10,7 @@
     $address = $_POST['address'];
     $bairro = $_POST['bairroName'];
     $cep = $_POST['cep'];
+    $tel = $_POST['tel'];
     $email = $_POST['email'];
     $emailConfirm = $_POST['confirmEmail'];
     $password = md5($_POST['password']);
@@ -19,7 +20,7 @@
     if (isset($entrar)) {
         if($email == $emailConfirm){
             if($password == $passwordConfirm){
-                $sql = "INSERT INTO `usuarios` (`usuarioId`, `primeiroNome`, `sobreNome`, `cpf`, `estado`, `cidade`, `endereco`, `bairro`, `email`, `senha`) VALUES (NULL, '".$firstName."', '".$lastName."', '".$cpf."', '".$state."', '".$city."', '".$address."', '".$bairro."', '".$email."', '".$password."');";
+                $sql = "INSERT INTO `usuarios` (`usuarioId`, `primeiroNome`, `sobreNome`, `cpf`, `estado`, `cidade`, `endereco`, `bairro`, `email`, `senha`, `telefone`, `nomeCompleto`, `cep`) VALUES (NULL, '".$firstName."', '".$lastName."', '".$cpf."', '".$state."', '".$city."', '".$address."', '".$bairro."', '".$email."', '".$password."', '".$tel."', '".$firstName." ".$lastName."', '".$cep."');";
                 if($conn->query($sql)){
                     echo"<script language='javascript' type='text/javascript'>
                         window.location.href='../login.php';

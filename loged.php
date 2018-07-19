@@ -1,9 +1,7 @@
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php
+	require_once "./php/configDB.php"
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,11 +48,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li id="campRegister"><a  href="register.html">Register</a></li>
 					</ul>
 					<div class="cart box_1">
-						<a href="checkout.php">
+						<a href="checkout.php" id="checkoutClick">
 						<h3> <div class="total">
 							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> itens)</div>
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
+						<script type="module">
+							import * as DATA from './js/dataCart';
+							document.getElementById('checkoutClick').onclick = function(){
+								DATA.loadCart();
+								DATA.saveCartCookie();
+							};
+						</script>
 						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 
 					</div>
@@ -165,38 +170,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--content-->
 <div class=" container">
 <div class=" register">
-	<h1>Cadastrar</h1>
-		<form method="POST" action="./php/register.php"> 
-			<div class="col-md-6 register-top-grid">
-			<h3>Informações Pessoais</h3>
-				<div>
-					<span>Primeiro Nome</span>
-					<input type="text" name="firstName" id="firstName"> 
+	<?php
+		if( !isset($_COOKIE["1AMM-CV002"]) ){
+
+		}else{
+			$sql = "SELECT * FROM usuarios WHERE usuarioId = ".$_COOKIE["1AMM-CV002"].";";
+			$result = $conn->query($sql);
+			if( $result->num_rows > 0 ){
+				$row = $result->fetch_assoc();
+
+				$sql2 = "SELECT COUNT(pedidoId) FROM pedidos WHERE usuarioId = ".$_COOKIE["1AMM-CV002"].";";
+				$result2 = $conn->query($sql2);
+				$row2 = $result2->fetch_assoc();
+
+				echo"
+				<div class='col-md-6 register-top-grid'>
+					<h3>".$row["primeiroNome"]." ".$row["sobreNome"]."</h3><br>
+					<h4>Endereço para entrega: </h4>
+					<span><h4>".$row["endereco"].", ".$row["bairro"].", ".$row["cidade"]." - ".$row["estado"]."</h4></span><br>
+					<h4>Total de pedidos: <span>".$row2["COUNT(pedidoId)"]."</span></4><br>
+
+					<a href='#' class='add-cart item_add'>Editar dados</a>
+					<a href='#' class='add-cart item_add'>Meus pedidos</a>
+					
 				</div>
-				</div>
-				<div class="col-md-6 register-bottom-grid">
+				<!--div class='col-md-6 register-bottom-grid'>
 					<h3>Informações de Login</h3>
 					<div>
 						<span>Email</span>
-						<input type="text" name="email" id="email">
+						<input type='text' name='email' id='email'>
 						</div>
 						<div>
 							<span>Confirme o Email</span>
-							<input type="text" name="confirmEmail" id="confirmEmail">
+							<input type='text' name='confirmEmail' id='confirmEmail'>
 						</div>
 						<div>
 							<span>Senha</span>
-							<input type="password" name="password" id="password">
+							<input type='password' name='password' id='password'>
 						</div>
 						<div>
 							<span>Confirme a Senha</span>
-							<input type="password" name="confirmPassword" id="confirmPassword">
+							<input type='password' name='confirmPassword' id='confirmPassword'>
 						</div>
-						<input type="submit" value="Confirmar" name="cadastrar" id="cadastrar">
-					
-				</div>
-				<div class="clearfix"> </div>
-		</form>
+						<input type='submit' value='Confirmar' name='cadastrar' id='cadastrar'>
+						
+				</div-->
+				<div class='clearfix'> </div>";
+
+			}
+			
+			}
+		?>
+
 	</div>
 </div>
 <!--//content-->
