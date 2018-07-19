@@ -39,13 +39,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="submit" value="Pesquisar" id="btnSearch">
 					<script>
 						document.getElementById('btnSearch').onclick = function() {
-							var cname = "1AMM-AX001";
-							var cvalue = "3,"+document.getElementById('inputSearch').value;
-							var d = new Date();
-							d.setTime(d.getTime() + (1*3*1000));
-							var expires = "expires="+ d.toUTCString();
-							document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-							window.open("./products.php","_self");
+							var cvalue = document.getElementById('inputSearch').value;
+							window.location.href = "./products.php?search=3," + cvalue;
 						};
 					</script>	
 				</div>
@@ -55,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li id="campRegister"><a  href="register.html">Register</a></li>
 					</ul>
 					<div class="cart box_1">
-						<a href="checkout.html">
+						<a href="checkout.php">
 						<h3> <div class="total">
 							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
 							<img src="images/cart.png" alt=""/></h3>
@@ -172,6 +167,77 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 <h1>My Shopping Bag (2)</h1>
 		 <div class="col-md-9 cart-items">
 			<div id="productsCheckout">
+				<?php
+					if( isset($_COOKIE["1AMM-CT001"]) ){
+						$data = json_decode( $_COOKIE["1AMM-CT001"], true );
+						$max = sizeof($data);
+						$total = 0;
+						for($i=0; $i<$max; $i++){
+							$subtotal = $data[$i]["quant"] * $data[$i]["preco"];
+							$total += $subtotal;
+							echo
+							"
+							 <div class='cart-header'>
+								 <a  href='#' id='x".$i."'><img src='../images/close_1.png' class='img-responsive' alt='Deletar item'/></a>
+								 <script type='module'>
+									import * as DATA from './js/dataCart';
+									document.getElementById('x".$i."').onclick=function(){
+										//console.log(".$data[$i]["id"].");
+										DATA.loadCart();
+										DATA.deleteItem(".$data[$i]["id"].");
+										DATA.saveCartCookie();
+										location.reload();
+									};
+								</script>
+								 <div class='cart-sec simpleCart_shelfItem'>
+										 <div class='cart-item cyc'>
+											 <img src='../images/".$data[$i]["imagem"]."' class='img-responsive' alt=''/>
+										 </div>
+									 <div class='cart-item-info'>
+											 <h3><a href='single.html'>".$data[$i]["nome"]."</a><span>".$data[$i]["descricao"]."</span></h3>
+											 <ul class='qty'>
+												 <li><p>Quantidade: ".$data[$i]["quant"]."</p></li><br>
+												 <li><p>Prç. unitário: R$".$data[$i]["preco"]."</p></li><br>
+											 </ul>
+											 <div class='delivery'>
+												 <p><b>Total : R$".$subtotal."</b></p>
+												 <span>Delivered in 2-3 bussiness days</span>
+												 <div class='clearfix'></div>
+											 </div>								
+									 </div>
+									 <div class='clearfix'></div>                       
+								 </div>
+							 </div>";
+						}
+						echo"
+						</div>
+						</div>
+						<div class='col-md-3 cart-total'>
+							<a class='continue' href='#'>Continue to basket</a>
+							<div class='price-details'>
+								<h3>Price Details</h3>
+								<span>Total</span>
+								<span class='total1' id='total1Check'>".$total."</span>
+								<span>Discount</span>
+								<span class='total1'>---</span>
+								<span>Delivery Charges</span>
+								<span class='total1'>150.00</span>
+								<div class='clearfix'></div>				 
+							</div>	
+							<ul class='total_price'>
+							<li class='last_price'> <h4>TOTAL</h4></li>	
+							<li class='last_price' id='total2Check'><span>".$total."</span></li>
+							<div class='clearfix'> </div>
+							</ul>
+							
+							
+							<div class='clearfix'></div>
+							<a class='order' href='#'>Place Order</a>";
+					}else{
+
+					}
+
+				?>
 				<!--script>$(document).ready(function(c) {
 					$('.close1').on('click', function(c){
 						$('.cart-header').fadeOut('slow', function(c){
@@ -233,29 +299,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											
 				  </div>
 			  </div-->		
-		 </div>
-		 </div>
-		  <div class="col-md-3 cart-total">
-			 <a class="continue" href="#">Continue to basket</a>
-			 <div class="price-details">
-				 <h3>Price Details</h3>
-				 <span>Total</span>
-				 <span class="total1" id="total1Check">6200.00</span>
-				 <span>Discount</span>
-				 <span class="total1">---</span>
-				 <span>Delivery Charges</span>
-				 <span class="total1">150.00</span>
-				 <div class="clearfix"></div>				 
-			 </div>	
-			 <ul class="total_price">
-			   <li class="last_price"> <h4>TOTAL</h4></li>	
-			   <li class="last_price" id="total2Check"><span>6350.00</span></li>
-			   <div class="clearfix"> </div>
-			 </ul>
-			
-			 
-			 <div class="clearfix"></div>
-			 <a class="order" href="#">Place Order</a>
+		 
+		  
 			 <div class="total-item">
 				 <h3>OPTIONS</h3>
 				 <h4>COUPONS</h4>
@@ -317,7 +362,7 @@ and promo</p>
 		</div>
 
 <!--SCRIPTS-->
-<script type="module" src="./js/checkout.js"></script>
+<script type="module" src="./js/checkCart.js"></script>
 <script type="module" src="./js/checkLogin.js"></script>
 
 </body>

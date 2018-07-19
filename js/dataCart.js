@@ -36,6 +36,18 @@ export function addItem(id, nome, descricao, preco, quant, imagem){
     saveCart();
 }
 
+export function deleteItem(id){
+    var index = -1;
+    for(var i in shoppingCart){
+        if(shoppingCart[i].id == id) index = i;
+    }
+    if(index > -1){
+        shoppingCart.splice(index, 1);
+    }
+    saveCart();
+    
+}
+
 export function getTotalPrice(){
     var totalPrice = 0;
     if(shoppingCart.length <= 0) return 0;
@@ -73,6 +85,16 @@ export function totalPriceItem(id){
 export function updateCart(){
     document.getElementById("simpleCart_quantity").innerHTML = getTotalItens();
     document.getElementById("simpleCart_total").innerHTML = "R$" + getTotalPrice();
+}
+
+export function saveCartCookie(){
+    var cname = "1AMM-CT001";
+    var cvalue = JSON.stringify(shoppingCart);
+    var d = new Date();
+    d.setTime(d.getTime() + (60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    // window.location.href='../registro.php';
 }
 
 

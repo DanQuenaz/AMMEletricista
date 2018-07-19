@@ -1,11 +1,18 @@
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
 <?php
-require_once "./php/configDB.php"
+	require_once "./php/configDB.php"
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Products :: w3layouts</title>
+<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Signle :: w3layouts</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -25,41 +32,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/memenu.js"></script>
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>
+ 
+
+<script src="js/main.js"></script>
 <!--script src="js/simpleCart.min.js"> </script-->
+
 </head>
 <body>
 <!--header-->
 <div class="header">
 	<div class="header-top">
 		<div class="container">
-		<div class="search">	
-				<input type="text" value="Pesquisar " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" id="inputSearch">
-				<input type="submit" value="Pesquisar" id="btnSearch">
-				<script>
-					document.getElementById('btnSearch').onclick = function() {
-						var cvalue = document.getElementById('inputSearch').value;
-						window.location.href = "./products.php?search=3," + cvalue;
-					};
-				</script>	
-			</div>
+				<div class="search">	
+					<input type="text" value="Pesquisar " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" id="inputSearch">
+					<input type="submit" value="Pesquisar" id="btnSearch">
+					<script>
+						document.getElementById('btnSearch').onclick = function() {
+							var cvalue = document.getElementById('inputSearch').value;
+							window.location.href = "./products.php?search=3," + cvalue;
+						};
+					</script>	
+				</div>
 			<div class="header-left">		
 					<ul>
-						<li id="campLogin"><a href="login.php">Login</a></li>
-						<li id="campRegister"><a  href="register.html">Register</a></li>
+						<li ><a class="lock"  href="login.html"  >Login</a></li>
+						<li><a class="lock" href="register.html"  >Register</a></li>
+						<li>
+</li>
+
 					</ul>
 					<div class="cart box_1">
-						<a href="checkout.php" id="checkoutClick">
+						<a href="checkout.php">
 						<h3> <div class="total">
 							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
-						<script type="module">
-							import * as DATA from './js/dataCart';
-							document.getElementById('checkoutClick').onclick = function(){
-								DATA.loadCart();
-								DATA.saveCartCookie();
-							};
-						</script>
 						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 
 					</div>
@@ -73,98 +80,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="logo">
 					<a href="index.html"><img src="images/logo.png" alt=""></a>	
 				</div>
-		  <div class=" h_menu4">
-				<ul class="memenu skyblue">
-					<li><a class="color2" href="index.html">Início</a></li>	
-				    <!--li><a class="color1" href="#">Produtos</a>
-				      	<div class="mepanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<ul>
-										<li><a href="products.html">Accessories</a></li>
-										<li><a href="products.html">Bags</a></li>
-										<li><a href="products.html">Caps & Hats</a></li>
-										<li><a href="products.html">Hoodies & Sweatshirts</a></li>
-										<li><a href="products.html">Jackets & Coats</a></li>
-										<li><a href="products.html">Jeans</a></li>
-										<li><a href="products.html">Jewellery</a></li>
-										<li><a href="products.html">Jumpers & Cardigans</a></li>
-										<li><a href="products.html">Leather Jackets</a></li>
-										<li><a href="products.html">Long Sleeve T-Shirts</a></li>
-										<li><a href="products.html">Loungewear</a></li>
-									</ul>	
-								</div>							
-							</div>
-						  </div>
-						</div>
-					</li-->
-				    <!--li class="grid"><a class="color2" href="#">	Women</a>
-					  	<div class="mepanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<ul>
-										<li><a href="products.html">Accessories</a></li>
-										<li><a href="products.html">Bags</a></li>
-										<li><a href="products.html">Caps & Hats</a></li>
-										<li><a href="products.html">Hoodies & Sweatshirts</a></li>
-										<li><a href="products.html">Jackets & Coats</a></li>
-										<li><a href="products.html">Jeans</a></li>
-										<li><a href="products.html">Jewellery</a></li>
-										<li><a href="products.html">Jumpers & Cardigans</a></li>
-										<li><a href="products.html">Leather Jackets</a></li>
-										<li><a href="products.html">Long Sleeve T-Shirts</a></li>
-										<li><a href="products.html">Loungewear</a></li>
-									</ul>	
-								</div>							
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<ul>
-										<li><a href="products.html">Shirts</a></li>
-										<li><a href="products.html">Shoes, Boots & Trainers</a></li>
-										<li><a href="products.html">Shorts</a></li>
-										<li><a href="products.html">Suits & Blazers</a></li>
-										<li><a href="products.html">Sunglasses</a></li>
-										<li><a href="products.html">Sweatpants</a></li>
-										<li><a href="products.html">Swimwear</a></li>
-										<li><a href="products.html">Trousers & Chinos</a></li>
-										<li><a href="products.html">T-Shirts</a></li>
-										<li><a href="products.html">Underwear & Socks</a></li>
-										<li><a href="products.html">Vests</a></li>
-									</ul>	
-								</div>							
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>Popular Brands</h4>
-									<ul>
-										<li><a href="products.html">Levis</a></li>
-										<li><a href="products.html">Persol</a></li>
-										<li><a href="products.html">Nike</a></li>
-										<li><a href="products.html">Edwin</a></li>
-										<li><a href="products.html">New Balance</a></li>
-										<li><a href="products.html">Jack & Jones</a></li>
-										<li><a href="products.html">Paul Smith</a></li>
-										<li><a href="products.html">Ray-Ban</a></li>
-										<li><a href="products.html">Wood Wood</a></li>
-									</ul>	
-								</div>												
-							</div>
-						  </div>
-						</div>
-					</li-->
-					<li class="active grid"><a class="color8" href="products.php">Produtos</a></li>				
-					<li><a class="color6" href="contact.html">Contato</a></li>
-			  </ul> 
-			</div>
+				<div class=" h_menu4">
+					<ul class="memenu skyblue">
+						<li><a class="color2" href="index.html">Início</a></li>	
+						<li><a class="color1" href="products.php">Produtos</a></li>				
+						<li><a class="color6" href="contact.html">Contato</a></li>
+					</ul> 
+				</div>
 				
 				<div class="clearfix"> </div>
 		</div>
 		</div>
 
-</div>
+	</div>
 
 	
 <!--content-->
@@ -172,12 +100,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="product">
 	<div class="container">
 		<div class="col-md-3 product-price">
-				
-		<div class=" rsidebar span_1_of_left">
-			<div class="of-left">
-				<h3 class="cate">Categorias</h3>
-			</div>
-			<ul class="menu">
+			<div class=" rsidebar span_1_of_left">
+				<div class="of-left">
+					<h3 class="cate">Categorias</h3>
+				</div>
+				<ul class="menu">
 					<li class="item1"><a href="#">Peças e Componentes Industriais</a>
 						<ul class="cute">
 							<li class="subitem1"><a href="./products.php?search=2,Transformadores" id="sub1">Transformadores</a></li>
@@ -299,181 +226,109 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 					</li>
 				</ul>
-					</div>
-				<!--initiate accordion-->
-		<script type="text/javascript">
-			$(function() {
-			    var menu_ul = $('.menu > li > ul'),
-			           menu_a  = $('.menu > li > a');
-			    menu_ul.hide();
-			    menu_a.click(function(e) {
-			        e.preventDefault();
-			        if(!$(this).hasClass('active')) {
-			            menu_a.removeClass('active');
-			            menu_ul.filter(':visible').slideUp('normal');
-			            $(this).addClass('active').next().stop(true,true).slideDown('normal');
-			        } else {
-			            $(this).removeClass('active');
-			            $(this).next().stop(true,true).slideUp('normal');
-			        }
-			    });
-			
-			});
-		</script>
-<!---->
-	<div class="product-middle">
-		
-					<div class="fit-top">
-						<h6 class="shop-top">Lorem Ipsum</h6>
-						<a href="single.html" class="shop-now">SHOP NOW</a>
-<div class="clearfix"> </div>
-	</div>
-				</div>	 
-						<!--div class="sellers">
-							<div class="of-left-in">
-								<h3 class="tag">Tags</h3>
-							</div>
-								<div class="tags">
-									<ul>
-										<li><a href="#">design</a></li>
-										<li><a href="#">fashion</a></li>
-										<li><a href="#">lorem</a></li>
-										<li><a href="#">dress</a></li>
-										<li><a href="#">fashion</a></li>
-										<li><a href="#">dress</a></li>
-										<li><a href="#">design</a></li>
-										<li><a href="#">dress</a></li>
-										<li><a href="#">design</a></li>
-										<li><a href="#">fashion</a></li>
-										<li><a href="#">lorem</a></li>
-										<li><a href="#">dress</a></li>
-										
-										<div class="clearfix"> </div>
-									</ul>
-								
-								</div>
-								
-		</div-->
-				<!---->
-				<!--div class="product-bottom">
-					<div class="of-left-in">
-								<h3 class="best">Best Sellers</h3>
-							</div>
-					<div class="product-go">
-						<div class=" fashion-grid">
-									<a href="single.html"><img class="img-responsive " src="images/p1.jpg" alt=""></a>
-									
-								</div>
-							<div class=" fashion-grid1">
-								<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sit
-amet consectetuer  </a></h6>
-								
-								<span class=" price-in1"> $40.00</span>
-							</div>
-								
-							<div class="clearfix"> </div>
-							</div>
-							<div class="product-go">
-						<div class=" fashion-grid">
-									<a href="single.html"><img class="img-responsive " src="images/p2.jpg" alt=""></a>
-									
-								</div>
-							<div class="fashion-grid1">
-								<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sit
-amet consectetuer </a></h6>
-								
-								<span class=" price-in1"> $40.00</span>
-							</div>
-								
-							<div class="clearfix"> </div>
-							</div>
-					
-				</div-->
-					<!--div class=" per1">
-					<a href="single.html" ><img class="img-responsive" src="images/pro.jpg" alt="">
-						<div class="six1">
-							<h4>DISCOUNT</h4>
-							<p>Up to</p>
-							<span>60%</span>
-						</div></a>
-					</div-->
 			</div>
-
-				<div class="col-md-9 product1">
-				<div id="itensButton">
-
-				<?php
-					if( !isset($_GET["search"]) ){
-						$sql = "SELECT * FROM produtos";
-					}else{
-						$params = explode( ",", $_GET["search"] );
-						if($params[0] == "1"){
-							$sql = "SELECT * FROM produtos WHERE categoria LIKE '%".$params[1]."%'";
-						}else if($params[0] == "2"){
-							$sql = "SELECT * FROM produtos WHERE subcategoria LIKE '%".$params[1]."%'";
-						}else if($params[0] == "3"){
-							$sql = "SELECT * FROM produtos WHERE LOWER(categoria) LIKE '%".strtolower($params[1])."%' OR LOWER(subcategoria) LIKE '%".strtolower($params[1])."%' OR LOWER(nome) LIKE '%".strtolower($params[1])."%' OR LOWER(descricaoSimples) LIKE '%".strtolower($params[1])."%' OR LOWER(descricaoCompleta) LIKE '%".strtolower($params[1])."%' ";
-						}else{
-							$sql = "SELECT * FROM produtos";
+				<!--initiate accordion-->
+			<script type="text/javascript">
+				$(function() {
+					var menu_ul = $('.menu > li > ul'), menu_a  = $('.menu > li > a');
+					menu_ul.hide();
+					menu_a.click(function(e) {
+						e.preventDefault();
+						if(!$(this).hasClass('active')) {
+							menu_a.removeClass('active');
+							menu_ul.filter(':visible').slideUp('normal');
+							$(this).addClass('active').next().stop(true,true).slideDown('normal');
+						} else {
+							$(this).removeClass('active');
+							$(this).next().stop(true,true).slideUp('normal');
 						}
-					}
-					
-					$result = $conn->query($sql);
-					$count = 3;
-					$count2 = 0;
-		
-					if ($result->num_rows > 0) {
-						// output data of each row
-						while($row = $result->fetch_assoc()) {
-							if( $count % 3 == 0 ){
-								echo "<div class=\" bottom-product\">";
-							}
-							echo " 
-							<div class='col-md-4 bottom-cd simpleCart_shelfItem'>
-							<div class='product-at '>
-								<a href='./single.php?itemid=".$row["produtoId"]."' id='viewProduct".$count2."'><img class='img-responsive' src='images/" . $row["imagem1"]. "' alt='' style='height:200px; width:300px'>
-								<div class='pro-grid'>
-											<span class='buy-in'>Buy Now</span>
-								</div>
-							</a>
-								
+					});
+				});
+			</script>
+		</div>
+		<?php
+			if( isset($_GET["itemid"]) ){
+				$sql = "SELECT * FROM produtos WHERE produtoId = ".$_GET["itemid"].";";
+				$result = $conn->query($sql);
+				if($result->num_rows > 0){
+					$row = $result->fetch_assoc();
+					echo"
+					<div class='col-md-9 product-price1'>
+						<div class='col-md-5 single-top'>	
+							<div class='flexslider'>
+								<ul class='slides'>
+									<li data-thumb='images/".$row["imagem1"]."'><img src='./images/".$row["imagem1"]."' /></li>
+									<li data-thumb='images/".$row["imagem2"]."'><img src='images/".$row["imagem2"]."' /></li>
+									<li data-thumb='images/".$row["imagem3"]."'><img src='images/".$row["imagem3"]."' /></li>
+									<li data-thumb='images/".$row["imagem4"]."'><img src='images/".$row["imagem4"]."' /></li>
+								</ul>
 							</div>
-							<p class='tun'>". $row["nome"]. "</p>
-							<a  href='' class='item_add' id='addToCart' data-id='" . $row["produtoId"]. "' data-name='" . $row["nome"]."' data-price='" . $row["preco"]. "' data-description='" . $row["descricaoSimples"]."' data-imagem='" . $row["imagem1"]."'><p class='number item_price'><i> </i>R$". $row["preco"]. "</p></a>						
-							</div>";
-							$count = $count+1;
-							$count2 = $count2+1;
-						if( $count % 3 == 0 ){
-							echo "<div class=\"clearfix\"> </div></div>";
-						}
-						}
-					} else {
-						echo "0 results";
-					}
-					$conn->close();
-				?>
-					
-				
-				</div>
-				</div>
-		<div class="clearfix"> </div>
-		<!--nav class="in">
-				  <ul class="pagination">
-					<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">2 <span class="sr-only"></span></a></li>
-					<li><a href="#">3 <span class="sr-only"></span></a></li>
-					<li><a href="#">4 <span class="sr-only"></span></a></li>
-					<li><a href="#">5 <span class="sr-only"></span></a></li>
-					 <li> <a href="#" aria-label="Next"><span aria-hidden="true">»</span> </a> </li>
-				  </ul>
-				</nav-->
-		</div>
-		
-		</div>
-			
-				<!---->
+							<!-- FlexSlider -->
+							<script defer src='js/jquery.flexslider.js'></script>
+							<link rel='stylesheet' href='css/flexslider.css' type='text/css' media='screen' />
 
+							<script>
+							// Can also be used with $(document).ready()
+								$(window).load(function() {
+									$('.flexslider').flexslider({
+										animation: 'slide',
+										controlNav: 'thumbnails'
+									});
+								});
+							</script>
+						</div>	
+						<div class='col-md-7 single-top-in simpleCart_shelfItem'>
+							<div class='single-para '>
+								<h4>".$row["nome"]."</h4>
+								<h5 class='item_price'>R$ ".$row["preco"]."</h5>
+								<p>".$row["descricaoSimples"]."</p>
+								<a  href='' class='item_add' id='addToCart' data-id='" . $row["produtoId"]. "' data-name='" . $row["nome"]."' data-price='" . $row["preco"]. "' data-description='" . $row["descricaoSimples"]."' data-imagem='" . $row["imagem1"]."'><p class='number item_price'><i> </i>R$". $row["preco"]. "</p></a>	
+							</div>
+						</div>
+
+						<div class='clearfix'> </div>
+								<!---->
+						<div class='cd-tabs'>
+							<nav>
+								<ul class='cd-tabs-navigation'>
+									<li><a data-content='fashion'  href='#0'>Description </a></li>
+									<li><a data-content='cinema' href='#0' >Addtional Informatioan</a></li>
+									
+								</ul> 
+							</nav>
+							<ul class='cd-tabs-content'>
+								<li data-content='fashion' >
+									<div class='facts'>
+										<p >".$row["descricaoCompleta"]."</p>        
+									</div>
+								</li>
+								<li data-content='cinema' >
+									<div class='facts1'>
+												
+										<div class='color'><p>Color</p>
+											<span >Blue, Black, Red</span>
+											<div class='clearfix'></div>
+										</div>
+										<div class='color'>
+											<p>Size</p>
+											<span >S, M, L, XL</span>
+											<div class='clearfix'></div>
+										</div>			
+									</div>
+								</li>
+								<div class='clearfix'></div>
+							</ul> 
+						</div> 	
+					</div>";
+				}
+			}else{
+				echo "Dados expirados!";
+			}
+		?>
+
+		<div class="clearfix"> </div>
+	</div>
+</div>
 <!--//content-->
 <div class="footer">
 				<div class="container">
@@ -522,8 +377,10 @@ and promo</p>
 		</div>
 
 <!--SCRIPTS-->
-<script type="module" src="./js/shoppingCart.js"></script>
+<script type="module" src="./js/checkCart.js"></script>
 <script type="module" src="./js/checkLogin.js"></script>
+<script type="module" src="./js/shoppingCart.js"></script>
+
 </body>
 </html>
 			

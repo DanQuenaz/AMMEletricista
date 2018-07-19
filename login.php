@@ -39,13 +39,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<input type="submit" value="Pesquisar" id="btnSearch">
 			<script>
 				document.getElementById('btnSearch').onclick = function() {
-					var cname = "1AMM-AX001";
-					var cvalue = "3,"+document.getElementById('inputSearch').value;
-					var d = new Date();
-					d.setTime(d.getTime() + (1*3*1000));
-					var expires = "expires="+ d.toUTCString();
-					document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-					window.open("./products.php","_self");
+					var cvalue = document.getElementById('inputSearch').value;
+					window.location.href = "./products.php?search=3," + cvalue;
 				};
 			</script>	
 		</div>
@@ -55,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li id="campRegister"><a  href="register.html">Register</a></li>
 					</ul>
 					<div class="cart box_1">
-						<a href="checkout.html">
+						<a href="checkout.php">
 						<h3> <div class="total">
 							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
 							<img src="images/cart.png" alt=""/></h3>
