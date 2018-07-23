@@ -1,13 +1,10 @@
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php
+	require_once "./php/configDB.php"
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Contact :: w3layouts</title>
+<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Register :: w3layouts</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -46,13 +43,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			<div class="header-left">		
 					<ul>
-						<li id="campLogin"><a href="login.php">Login</a></li>
-						<li id="campRegister"><a  href="register.html">Register</a></li>
+						<?php
+						if(isset($_COOKIE["1AMM-CV002"])){
+							$dados = explode(",", $_COOKIE["1AMM-CV002"]);
+							echo"
+							<li id='campLogin'><a href='loged.php'>".$dados[0]."</a></li>
+							<li id='campRegister'><a  href='index.php' id='clickExit'>Sair</a></li>
+							<script>
+								document.getElementById('clickExit').onclick = function(){
+									document.cookie = '1AMM-CV002' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+									window.location.href='../index.php';
+								}
+							</script>
+							";
+
+						}else{
+							echo"
+							<li id='campLogin'><a href='login.php'>Login</a></li>
+							<li id='campRegister'><a  href='register.php'>Register</a></li>
+							";
+						}
+						?>
 					</ul>
 					<div class="cart box_1">
 						<a href="checkout.php" id="checkoutClick">
 						<h3> <div class="total">
-							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
+							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> itens)</div>
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
 						<script type="module">
@@ -73,11 +89,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="head-top">
 				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt=""></a>	
+					<a href="index.php"><img src="images/logo.png" alt=""></a>	
 				</div>
 			<div class=" h_menu4">
 				<ul class="memenu skyblue">
-					<li><a class="color2" href="index.html">Início</a></li>	
+					<li ><a class="color2" href="index.php">Início</a></li>	
 					<!--li><a class="color1" href="#">Produtos</a>
 							<div class="mepanel">
 						<div class="row">
@@ -158,60 +174,100 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</li-->
 					<li><a class="color1" href="products.php">Produtos</a></li>				
-					<li class="active grid"><a class="color8" href="contact.html">Contato</a></li>
+					<li><a class="color6" href="contact.php">Contato</a></li>
 				</ul> 
 			</div>
 				
 				<div class="clearfix"> </div>
 		</div>
 		</div>
+	
 </div>
 
 	
 <!--content-->
-<div class="contact">
-			
-			<div class="container">
-				<h1>Contact</h1>
-			<div class="contact-form">
-				
-				<div class="col-md-8 contact-grid">
-					<form>	
-						<input type="text" value="Name" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Name';}">
-					
-						<input type="text" value="Email" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Email';}">
-						<input type="text" value="Subject" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Subject';}">
-						
-						<textarea cols="77" rows="6" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
-						<div class="send">
-							<input type="submit" value="Send">
-						</div>
-					</form>
-				</div>
-				<div class="col-md-4 contact-in">
-
-						<div class="address-more">
-						<h4>Address</h4>
-							<p>The company name,</p>
-							<p>Lorem ipsum dolor,</p>
-							<p>Glasglow Dr 40 Fe 72. </p>
-						</div>
-						<div class="address-more">
-						<h4>Address1</h4>
-							<p>Tel:1115550001</p>
-							<p>Fax:190-4509-494</p>
-							<p>Email:<a href="mailto:contact@example.com"> contact@example.com</a></p>
-						</div>
-					
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="map">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37494223.23909492!2d103!3d55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x453c569a896724fb%3A0x1409fdf86611f613!2sRussia!5e0!3m2!1sen!2sin!4v1415776049771"></iframe>
-			</div>
-		</div>
+<div class=" container">
+<div class=" register">
+    <h1>Editar Dados</h1>
+    <?php
+    if( isset( $_COOKIE["1AMM-CV002"] ) ){
+		$dados = explode(",", $_COOKIE["1AMM-CV002"]);
+        $sql = "SELECT * FROM usuarios WHERE usuarioId = ".$dados[1].";";
+        $result = $conn->query($sql);
+        if($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            echo"
+            <form method='POST' action='./php/alterUser.php'> 
+                <div class='col-md-6 register-top-grid'>
+                <h3>Informações Pessoais</h3>
+                    <div>
+                        <span>Primeiro Nome</span>
+                        <input type='text' name='firstName' id='firstName' value='".$row["primeiroNome"]."' required autofocus> 
+                    </div>
+                    <div>
+                        <span>Sobrenome</span>
+                        <input type='text' name='lastName' id='lastName' value='".$row["sobreNome"]."' required> 
+                    </div>
+                    <div>
+                        <span>CPF</span>
+                        <input type='text' name='cpf' id='cpf' value='".$row["cpf"]."' required> 
+                    </div>
+                    <div>
+                        <span>Estado</span>
+                        <input type='text' name='stateName' id='stateName' value='".$row["estado"]."' required> 
+                    </div>
+                    <div>
+                        <span>Cidade</span>
+                        <input type='text' name='cityName' id='cityName' value='".$row["cidade"]."' required> 
+                    </div>
+                    <div>
+                        <span>Endereço</span>
+                        <input type='text' name='address' id='addressName' value='".$row["endereco"]."' required> 
+                    </div>
+                    <div>
+                        <span>Bairro</span>
+                        <input type='text' name='bairroName' id='bairroName' value='".$row["bairro"]."' required> 
+                    </div>
+                    <div>
+                        <span>CEP</span>
+                        <input type='text' name='cep' id='cep' value='".$row["cep"]."' required> 
+                    </div>
+                    <div>
+                        <span>Telefone</span>
+                        <input type='text' name='tel' id='tel' value='".$row["telefone"]."' required> 
+                    </div>
+                </div>
+                <div class='col-md-6 register-bottom-grid'>
+                        <h3>Informações de Login</h3>
+                        <div>
+                            <span>Email</span>
+                            <input type='text' name='email' id='email' value='".$row["email"]."' required>
+                            </div>
+                            <div>
+                                <span>Confirme o Email</span>
+                                <input type='text' name='confirmEmail' id='confirmEmail' value='".$row["email"]."' required>
+                            </div>
+                            <div>
+                                <span>Senha</span>
+                                <input type='password' name='password' id='password' value='-1-1-1-1-1-' required>
+                            </div>
+                            <div>
+                                <span>Confirme a Senha</span>
+                                <input type='password' name='confirmPassword' id='confirmPassword' value='-1-1-1-1-1-' required>
+                            </div>
+                            <input type='submit' value='Confirmar' name='alterar' id='alterar'>
+                        
+                </div>
+                    <div class='clearfix'> </div>
+            </form>
+            ";
+        }
+        
+    }
 		
+    ?>
 	</div>
+</div>
 <!--//content-->
 <div class="footer">
 				<div class="container">
@@ -222,7 +278,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="nav-bottom">
 						<li><a href="#">How to order</a></li>
 						<li><a href="#">FAQ</a></li>
-						<li><a href="contact.html">Location</a></li>
+						<li><a href="contact.php">Location</a></li>
 						<li><a href="#">Shipping</a></li>
 						<li><a href="#">Membership</a></li>	
 					</ul>	
@@ -259,10 +315,10 @@ and promo</p>
 		</div>
 		</div>
 
-
 <!--SCRIPTS-->
-<script type="module" src="./js/shoppingCart.js"></script>
-<script type="module" src="./js/checkLogin.js"></script>
+<script type="module" src="./js/checkCart.js"></script>
+
+
 </body>
 </html>
 			

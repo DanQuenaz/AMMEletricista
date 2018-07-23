@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Checkout :: w3layouts</title>
+<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Contact :: w3layouts</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -96,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			<div class=" h_menu4">
 				<ul class="memenu skyblue">
-					<li ><a class="color2" href="index.php">Início</a></li>	
+					<li><a class="color2" href="index.php">Início</a></li>	
 					<!--li><a class="color1" href="#">Produtos</a>
 							<div class="mepanel">
 						<div class="row">
@@ -177,186 +177,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</li-->
 					<li><a class="color1" href="products.php">Produtos</a></li>				
-					<li><a class="color6" href="contact.php">Contato</a></li>
+					<li class="active grid"><a class="color8" href="contact.php">Contato</a></li>
 				</ul> 
 			</div>
 				
 				<div class="clearfix"> </div>
 		</div>
 		</div>
-	
 </div>
 
 	
-<div class="container">
-	<div class="check">	 
-				<?php
-					if( isset($_COOKIE["1AMM-CT001"]) ){
-						$data = json_decode( $_COOKIE["1AMM-CT001"], true );
-						$max = sizeof($data);
-						$total = 0;
-						echo"
-						<h1>Meu Carrinho (".$max.")</h1>
-						<div class='col-md-9 cart-items'>
-						<div id='productsCheckout'>";
-						for($i=0; $i<$max; $i++){
-							$subtotal = $data[$i]["quant"] * $data[$i]["preco"];
-							$total += $subtotal;
-							echo
-							"
-							 <div class='cart-header'>
-								 <a  href='#' id='x".$i."'><img src='../images/close_1.png' class='img-responsive' alt='Deletar item'/></a>
-								 <script type='module'>
-									import * as DATA from './js/dataCart';
-									document.getElementById('x".$i."').onclick=function(){
-										//console.log(".$data[$i]["id"].");
-										DATA.loadCart();
-										DATA.deleteItem(".$data[$i]["id"].");
-										DATA.saveCartCookie();
-										location.reload();
-									};
-								</script>
-								 <div class='cart-sec simpleCart_shelfItem'>
-										 <div class='cart-item cyc'>
-											 <img src='../images/".$data[$i]["imagem"]."' class='img-responsive' alt=''/>
-										 </div>
-									 <div class='cart-item-info'>
-											 <h3><a href='single.php?itemid=".$data[$i]["id"]."'>".$data[$i]["nome"]."</a><span>".$data[$i]["descricao"]."</span></h3>
-											 <ul class='qty'>
-												 <li><p>Quantidade: ".$data[$i]["quant"]."</p></li><br>
-												 <li><p>Prç. unitário: R$".$data[$i]["preco"]."</p></li><br>
-											 </ul>
-											 <div class='delivery'>
-												 <p><b>Total : R$".$subtotal."</b></p>
-												 <span>Delivered in 2-3 bussiness days</span>
-												 <div class='clearfix'></div>
-											 </div>								
-									 </div>
-									 <div class='clearfix'></div>                       
-								 </div>
-							 </div>";
-						}
-						if($max == 0){
-							echo"Carrinho vazio!";
-						}
-						echo"
-						</div>
-						</div>
-						<div class='col-md-3 cart-total'>
-							<a class='continue' href='#'>Continue to basket</a>
-							<div class='price-details'>
-								<h3>Price Details</h3>
-								<span>Total</span>
-								<span class='total1' id='total1Check'>".$total."</span>
-								<span>Discount</span>
-								<span class='total1'>---</span>
-								<span>Delivery Charges</span>
-								<span class='total1'>150.00</span>
-								<div class='clearfix'></div>				 
-							</div>
-							<br>
-							<div class='total-item'>
-								<h3>Frete</h3>
-								<div class='radio'>
-									<label><input type='radio' name='optradio' checked>Option 1</label>
-								</div>
-								<div class='radio'>
-									<label><input type='radio' name='optradio'>Option 2</label>
-								</div>
-								<div class='radio disabled'>
-									<label><input type='radio' name='optradio' disabled>Option 3</label>
-								</div>
-							</div>
-
-							<ul class='total_price'>
-							<li class='last_price'> <h4>TOTAL</h4></li>	
-							<li class='last_price' id='total2Check'><span>".$total."</span></li>
-							<div class='clearfix'> </div>
-							</ul>
-							
-							<div class='clearfix'></div>
-							<a class='order' href='#'>Place Order</a>";
-					}else{
-
-					}
-
-				?>
-				<!--script>$(document).ready(function(c) {
-					$('.close1').on('click', function(c){
-						$('.cart-header').fadeOut('slow', function(c){
-							$('.cart-header').remove();
-						});
-						});	  
-					});
-			   </script>
-			 <div class="cart-header">
-				 <div class="close1"> </div>
-				 <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="images/pic1.jpg" class="img-responsive" alt=""/>
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
-						<ul class="qty">
-							<li><p>Size : 5</p></li>
-							<li><p>Qty : 1</p></li>
-						</ul>
+<!--content-->
+<div class="contact">
+			
+			<div class="container">
+				<h1>Contact</h1>
+			<div class="contact-form">
+				
+				<div class="col-md-8 contact-grid">
+					<form>	
+						<input type="text" value="Name" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Name';}">
+					
+						<input type="text" value="Email" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Email';}">
+						<input type="text" value="Subject" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Subject';}">
 						
-							 <div class="delivery">
-							 <p>Service Charges : Rs.100.00</p>
-							 <span>Delivered in 2-3 bussiness days</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			 </div>
-			 <script>$(document).ready(function(c) {
-					$('.close2').on('click', function(c){
-							$('.cart-header2').fadeOut('slow', function(c){
-						$('.cart-header2').remove();
-					});
-					});	  
-					});
-			 </script>
-			 <div class="cart-header2">
-				 <div class="close2"> </div>
-				  <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="images/pic2.jpg" class="img-responsive" alt=""/>
+						<textarea cols="77" rows="6" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+						<div class="send">
+							<input type="submit" value="Send">
 						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
-						<ul class="qty">
-							<li><p>Size : 5</p></li>
-							<li><p>Qty : 1</p></li>
-						</ul>
-							 <div class="delivery">
-							 <p>Service Charges : Rs.100.00</p>
-							 <span>Delivered in 2-3 bussiness days</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			  </div-->		
-		 
-		  
-			<!--div class="total-item">
-					<h3>OPTIONS</h3>
-					<h4>COUPONS</h4>
-					<a class="cpns" href="#">Apply Coupons</a>
-					<p><a href="#">Log In</a> to use accounts - linked coupons</p>
-				</div-->
+					</form>
+				</div>
+				<div class="col-md-4 contact-in">
+
+						<div class="address-more">
+						<h4>Address</h4>
+							<p>The company name,</p>
+							<p>Lorem ipsum dolor,</p>
+							<p>Glasglow Dr 40 Fe 72. </p>
+						</div>
+						<div class="address-more">
+						<h4>Address1</h4>
+							<p>Tel:1115550001</p>
+							<p>Fax:190-4509-494</p>
+							<p>Email:<a href="mailto:contact@example.com"> contact@example.com</a></p>
+						</div>
+					
+				</div>
+				<div class="clearfix"> </div>
 			</div>
+			<div class="map">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37494223.23909492!2d103!3d55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x453c569a896724fb%3A0x1409fdf86611f613!2sRussia!5e0!3m2!1sen!2sin!4v1415776049771"></iframe>
+			</div>
+		</div>
 		
-			<div class="clearfix"> </div>
-	 </div>
-	 </div>
-
-
+	</div>
 <!--//content-->
 <div class="footer">
 				<div class="container">
@@ -404,9 +278,9 @@ and promo</p>
 		</div>
 		</div>
 
-<!--SCRIPTS-->
-<script type="module" src="./js/checkCart.js"></script>
 
+<!--SCRIPTS-->
+<script type="module" src="./js/shoppingCart.js"></script>
 
 </body>
 </html>

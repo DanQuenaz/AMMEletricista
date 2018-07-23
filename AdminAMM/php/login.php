@@ -28,7 +28,7 @@
                 document.cookie = cname + \"=\" + cvalue + \";\" + expires + \";path=/\";;
                 window.location.href='../pedidos.php';
             </script>";
-            //header("Location:../index.html");
+            //header("Location:../index.php");
         }
     }
 ?>

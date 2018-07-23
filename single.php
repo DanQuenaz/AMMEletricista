@@ -55,8 +55,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			<div class="header-left">		
 					<ul>
-						<li id="campLogin"><a href="login.php">Login</a></li>
-						<li id="campRegister"><a  href="register.html">Register</a></li>
+						<?php
+						if(isset($_COOKIE["1AMM-CV002"])){
+							$dados = explode(",", $_COOKIE["1AMM-CV002"]);
+							echo"
+							<li id='campLogin'><a href='loged.php'>".$dados[0]."</a></li>
+							<li id='campRegister'><a  href='index.php' id='clickExit'>Sair</a></li>
+							<script>
+								document.getElementById('clickExit').onclick = function(){
+									document.cookie = '1AMM-CV002' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+									window.location.href='../index.php';
+								}
+							</script>
+							";
+
+						}else{
+							echo"
+							<li id='campLogin'><a href='login.php'>Login</a></li>
+							<li id='campRegister'><a  href='register.php'>Register</a></li>
+							";
+						}
+						?>
 					</ul>
 					<div class="cart box_1">
 						<a href="checkout.php" id="checkoutClick">
@@ -82,13 +101,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="head-top">
 				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt=""></a>	
+					<a href="index.php"><img src="images/logo.png" alt=""></a>	
 				</div>
 				<div class=" h_menu4">
 					<ul class="memenu skyblue">
-						<li><a class="color2" href="index.html">Início</a></li>	
+						<li><a class="color2" href="index.php">Início</a></li>	
 						<li><a class="color1" href="products.php">Produtos</a></li>				
-						<li><a class="color6" href="contact.html">Contato</a></li>
+						<li><a class="color6" href="contact.php">Contato</a></li>
 					</ul> 
 				</div>
 				
@@ -343,7 +362,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="nav-bottom">
 						<li><a href="#">How to order</a></li>
 						<li><a href="#">FAQ</a></li>
-						<li><a href="contact.html">Location</a></li>
+						<li><a href="contact.php">Location</a></li>
 						<li><a href="#">Shipping</a></li>
 						<li><a href="#">Membership</a></li>	
 					</ul>	
@@ -382,7 +401,7 @@ and promo</p>
 
 <!--SCRIPTS-->
 <script type="module" src="./js/checkCart.js"></script>
-<script type="module" src="./js/checkLogin.js"></script>
+
 <script type="module" src="./js/shoppingCart.js"></script>
 
 </body>
