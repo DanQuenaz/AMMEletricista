@@ -194,6 +194,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					if( isset($_COOKIE["1AMM-CT001"]) ){
 						$data = json_decode( $_COOKIE["1AMM-CT001"], true );
 						$max = sizeof($data);
+						$frete = 0;
+						if( isset($_GET["cepx"]) ){
+							$dadosCep = explode(";", $_GET["cepx"]);
+							$frete = $dadosCep[1];
+						}
 						$total = 0;
 						echo"
 						<h1>Meu Carrinho (".$max.")</h1>
@@ -228,7 +233,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											 </ul>
 											 <div class='delivery'>
 												 <p><b>Total : R$".$subtotal."</b></p>
-												 <span>Delivered in 2-3 bussiness days</span>
+												 <!--span>Delivered in 2-3 bussiness days</span-->
 												 <div class='clearfix'></div>
 											 </div>								
 									 </div>
@@ -246,7 +251,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a class='continue' href='#'>Continue to basket</a>
 							<div class='price-details'>
 								<h3>Price Details</h3>
-								<span>Total</span>
+								<span>Total dos produtos</span>
 								<span class='total1' id='total1Check'>".$total."</span>
 								<span>Discount</span>
 								<span class='total1'>---</span>
@@ -254,23 +259,98 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class='total1'>150.00</span>
 								<div class='clearfix'></div>				 
 							</div>
-							<br>
-							<div class='total-item'>
-								<h3>Frete</h3>
-								<div class='radio'>
-									<label><input type='radio' name='optradio' checked>Option 1</label>
-								</div>
-								<div class='radio'>
-									<label><input type='radio' name='optradio'>Option 2</label>
-								</div>
-								<div class='radio disabled'>
-									<label><input type='radio' name='optradio' disabled>Option 3</label>
-								</div>
-							</div>
+							<br>";
+						if( isset($_COOKIE["1AMM-CV002"]) && $max>0){
 
+						}else if($max > 0){
+							if( isset($_GET["cepx"]) ){
+								$dadosCep = explode(";", $_GET["cepx"]);
+
+								$parametros = array();
+								
+								$parametros['nCdEmpresa'] = '';
+								$parametros['sDsSenha'] = '';
+								
+								$parametros['sCepOrigem'] = '35900017';
+								$parametros['sCepDestino'] = '02460000';
+								
+								$parametros['nVlPeso'] = '1';
+								
+								$parametros['nCdFormato'] = '1';
+								
+								$parametros['nVlComprimento'] = '64';
+								$parametros['nVlAltura'] = '20';
+								$parametros['nVlLargura'] = '60';
+								$parametros['nVlDiametro'] = '0';
+								
+								$parametros['sCdMaoPropria'] = 's';
+								
+								$parametros['nVlValorDeclarado'] = '0';
+								
+								$parametros['sCdAvisoRecebimento'] = 'n';
+								
+								$parametros['StrRetorno'] = 'xml';
+								
+								$parametros['nCdServico'] = '40010,41106';
+								
+								$parametros = http_build_query($parametros);
+								$url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
+								$curl = curl_init($url.'?'.$parametros);
+								curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+								$dados = curl_exec($curl);
+								$dados = simplexml_load_string($dados);
+								echo"
+								<div class='price-details'>
+									<h3>Frete</h3>";
+								$countOps = 0;
+								foreach($dados->cServico as $linhas) {
+									if($linhas->Erro == 0) {
+										echo "<span>".$linhas->Codigo."</span>";
+										echo "
+										<div class='radio'>
+											<label><input type='radio' name='optradio' id='opt1".$countOps."'>".$linhas->Valor."</label>
+											<script>
+												document.getElementById('opt1".$countOps."').onclick = function(){
+													window.location.href='./checkout.php?cepx='+".$dadosCep[0]."+';'+'".str_replace(",", ".", $linhas->Valor)."';
+												}
+											</script>
+										</div>";
+										//echo $linhas->PrazoEntrega.' Dias </br>';
+										$countOps = $countOps+1;
+									}else {
+										echo $linhas->MsgErro;
+									}
+								}
+								echo"
+								</div>
+								";
+								
+							}else{
+								echo"
+								<div class='price-details'>
+									<h3>Frete</h3>
+									<div class='radio'>
+										<span>CEP</span>
+										<input type='text' name='inputCEP' id='inputCEP'>
+										<button type='button' class='btn btn-warning' id='okCEP'>OK</button>
+										<script>
+											document.getElementById('okCEP').onclick = function(){
+												window.location.href='./checkout.php?cepx='+document.getElementById('inputCEP').value+';0,0';
+											}
+										</script>
+									</div>
+								</div>
+								";
+							}
+							
+						}
+						$totalFrete = $total + $frete;
+
+						
+						echo"
 							<ul class='total_price'>
 							<li class='last_price'> <h4>TOTAL</h4></li>	
-							<li class='last_price' id='total2Check'><span>".$total."</span></li>
+							<li class='last_price' id='total2Check'><span>".$totalFrete."</span></li>
 							<div class='clearfix'> </div>
 							</ul>
 							
@@ -281,67 +361,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					}
 
 				?>
-				<!--script>$(document).ready(function(c) {
-					$('.close1').on('click', function(c){
-						$('.cart-header').fadeOut('slow', function(c){
-							$('.cart-header').remove();
-						});
-						});	  
-					});
-			   </script>
-			 <div class="cart-header">
-				 <div class="close1"> </div>
-				 <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="images/pic1.jpg" class="img-responsive" alt=""/>
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
-						<ul class="qty">
-							<li><p>Size : 5</p></li>
-							<li><p>Qty : 1</p></li>
-						</ul>
-						
-							 <div class="delivery">
-							 <p>Service Charges : Rs.100.00</p>
-							 <span>Delivered in 2-3 bussiness days</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			 </div>
-			 <script>$(document).ready(function(c) {
-					$('.close2').on('click', function(c){
-							$('.cart-header2').fadeOut('slow', function(c){
-						$('.cart-header2').remove();
-					});
-					});	  
-					});
-			 </script>
-			 <div class="cart-header2">
-				 <div class="close2"> </div>
-				  <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="images/pic2.jpg" class="img-responsive" alt=""/>
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
-						<ul class="qty">
-							<li><p>Size : 5</p></li>
-							<li><p>Qty : 1</p></li>
-						</ul>
-							 <div class="delivery">
-							 <p>Service Charges : Rs.100.00</p>
-							 <span>Delivered in 2-3 bussiness days</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			  </div-->		
 		 
 		  
 			<!--div class="total-item">
