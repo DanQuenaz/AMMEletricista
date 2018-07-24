@@ -12,8 +12,12 @@ $(".item_add").click(function(event){
     var _descricao = $(this).attr("data-description");
     var _preco = Number( $(this).attr("data-price") );
     var _imagem = $(this).attr("data-imagem");
+    var _peso = $(this).attr("data-peso");
+    var _altura = $(this).attr("data-altura");
+    var _largura = $(this).attr("data-largura");
+    var _comprimento = $(this).attr("data-comprimento");
 
-    Data.addItem(_id, _nome, _descricao, _preco, 1, _imagem);
+    Data.addItem(_id, _nome, _descricao, _preco, 1, _imagem, _peso, _altura, _largura, _comprimento);
 
     Data.updateCart();
 

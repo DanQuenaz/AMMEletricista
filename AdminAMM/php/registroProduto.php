@@ -8,6 +8,10 @@
     $categoria = $_POST['inputCategoria'];
     $subcategoria = $_POST['inputSubcategoria'];
     $preco = $_POST['inputPreco'];
+    $peso = $_POST['inputPeso'];
+    $altura = $_POST['inputAltura'];
+    $largura = $_POST['inputLargura'];
+    $comprimento = $_POST['inputComprimento'];
     $cadastrar = $_POST['cadastrar'];
 
     $target_dir = "../../images/";
@@ -31,7 +35,7 @@
     $uploadOk = 1;
     
     if (isset($cadastrar)) {
-        $sql = "INSERT INTO `produtos` (`produtoId`, `nome`, `preco`, `descricaoSimples`, `descricaoCompleta`, `categoria`, `subcategoria`, `imagem1`, `imagem2`, `imagem3`, `imagem4`) VALUES (NULL, '".$nome."', '".$preco."', '".$descSim."', '".$descCom."', '".$categoria."', '".$subcategoria."', '".$name1."', '".$name2."', '".$name3."', '".$name4."');";
+        $sql = "INSERT INTO `produtos` (`produtoId`, `nome`, `preco`, `descricaoSimples`, `descricaoCompleta`, `categoria`, `subcategoria`, `peso`, `altura`, `largura`, `comprimento`, `imagem1`, `imagem2`, `imagem3`, `imagem4`) VALUES (NULL, '".$nome."', '".$preco."', '".$descSim."', '".$descCom."', '".$categoria."', '".$subcategoria."', '".$peso."', '".$altura."', '".$largura."', '".$comprimento."', '".$name1."', '".$name2."', '".$name3."', '".$name4."');";
         
         // Check if image file is a actual image or fake image
         $check1 = getimagesize($_FILES["inputImage1"]["tmp_name"]);

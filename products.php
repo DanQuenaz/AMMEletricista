@@ -457,8 +457,8 @@ amet consectetuer </a></h6>
 							</a>
 								
 							</div>
-							<p class='tun'>". $row["nome"]. "</p>
-							<a  href='' class='item_add' id='addToCart' data-id='" . $row["produtoId"]. "' data-name='" . $row["nome"]."' data-price='" . $row["preco"]. "' data-description='" . $row["descricaoSimples"]."' data-imagem='" . $row["imagem1"]."'><p class='number item_price'><i> </i>R$". $row["preco"]. "</p></a>						
+							<p class='tun'>".$row["nome"]. "</p>
+							<a  href='' class='item_add' id='addToCart' data-id='" .$row["produtoId"]. "' data-name='" .$row["nome"]."' data-price='" .$row["preco"]. "' data-description='" .$row["descricaoSimples"]."' data-imagem='" . $row["imagem1"]."' data-peso='".$row["peso"]."' data-altura='".$row["altura"]."' data-largura='".$row["largura"]."' data-comprimento='".$row["comprimento"]."'><p class='number item_price'><i> </i>R$". $row["preco"]. "</p></a>						
 							</div>";
 							$count = $count+1;
 							$count2 = $count2+1;

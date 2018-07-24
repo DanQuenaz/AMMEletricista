@@ -200,13 +200,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							$frete = $dadosCep[1];
 						}
 						$total = 0;
+
+						$peso = 0.0;
+						$alturaMin = 0.0;
+						$larguraMin = 0.0;
+						$comprimentoMin = 0.0;
+						$volume = 0.0;
+
 						echo"
 						<h1>Meu Carrinho (".$max.")</h1>
 						<div class='col-md-9 cart-items'>
 						<div id='productsCheckout'>";
 						for($i=0; $i<$max; $i++){
+
 							$subtotal = $data[$i]["quant"] * $data[$i]["preco"];
 							$total += $subtotal;
+							$peso += $data[$i]["peso"] * $data[$i]["quant"];
+							$volume += $data[$i]["altura"] * $data[$i]["largura"] * $data[$i]["comprimento"] * $data[$i]["quant"];;
+
+							if($data[$i]["altura"] > $alturaMin) $alturaMin = $data[$i]["altura"];
+							if($data[$i]["largura"] > $larguraMin) $larguraMin = $data[$i]["largura"];
+							if($data[$i]["comprimento"] > $comprimentoMin) $comprimentoMin = $data[$i]["comprimento"];
+
 							echo
 							"
 							 <div class='cart-header'>
@@ -268,6 +283,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								$cep_ = str_replace("-", "", $dadosCep[0]);
 								$cep_ = str_replace(".", "", $cep_);
 								$cep_ = str_replace(" ", "", $cep_);
+								$volumeCalc = 0.0;
+								
+								while($volumeCalc < $volume){
+									$volumeCalc = $alturaMin * $larguraMin * $comprimentoMin;
+									if($volumeCalc < $volume){
+										$larguraMin += 0.1;
+										$alturaMin += 0.1;
+										$comprimentoMin += 0.1;
+									}
+								}
 
 								$parametros = array();
 								
@@ -277,18 +302,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								$parametros['sCepOrigem'] = '35900539';
 								$parametros['sCepDestino'] = $cep_;
 								
-								$parametros['nVlPeso'] = '1';
+								$parametros['nVlPeso'] = $peso;
 								
 								$parametros['nCdFormato'] = '1';
 								
-								$parametros['nVlComprimento'] = '64';
-								$parametros['nVlAltura'] = '20';
-								$parametros['nVlLargura'] = '60';
+								$parametros['nVlComprimento'] = $comprimentoMin;
+								$parametros['nVlAltura'] = $alturaMin;
+								$parametros['nVlLargura'] = $larguraMin;
 								$parametros['nVlDiametro'] = '0';
 								
 								$parametros['sCdMaoPropria'] = 's';
 								
-								$parametros['nVlValorDeclarado'] = '0';
+								if($total > 18.50 )$parametros['nVlValorDeclarado'] = $total;
+								else $parametros['nVlValorDeclarado'] = '0';
 								
 								$parametros['sCdAvisoRecebimento'] = 'n';
 								

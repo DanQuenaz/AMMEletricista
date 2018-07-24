@@ -181,25 +181,39 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputImage1">Imagem 1</label>
+                <div class="form-group col-md-3">
+                  <label for="inputPeso">Peso(Kg)</label>
+                  <input type="number" step="0.01" class="form-control" name="inputPeso" id="inputPeso" placeholder="Peso(Kg)" required autofocus>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="inputAltura">Altura(cm)</label>
+                  <input type="number" step="0.01" class="form-control" name="inputAltura" id="inputAltura" placeholder="Altura(cm)" required autofocus>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="inputLargura">Largura(cm)</label>
+                  <input type="number" step="0.01" class="form-control" name="inputLargura" id="inputLargura" placeholder="Largura(cm)" required autofocus>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="inputComprimento">Comprimento(cm)</label>
+                  <input type="number" step="0.01" class="form-control" name="inputComprimento" id="inputComprimento" placeholder="Comprimento(cm)" required autofocus>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputImage1">Imagem 1 (Principal)</label>
                   <input type="file" class="form-control-file" name="inputImage1" id="inputImage1">
                 </div>
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
                   <label for="inputImage2">Imagem 2</label>
                   <input type="file" class="form-control-file" name="inputImage2" id="inputImage2">
                 </div>
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
                   <label for="inputImage3">Imagem 3</label>
                   <input type="file" class="form-control-file" name="inputImage3" id="inputImage3">
                 </div>
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
                   <label for="inputImage4">Imagem 4</label>
                   <input type="file" class="form-control-file" name="inputImage4" id="inputImage4">
-                </div>
-                <div class="form-group col-md-12">
-                  <label for="inputImage5">Imagem 5</label>
-                  <input type="file" class="form-control-file" name="inputImage5" id="inputImage5">
                 </div>
             </div>
             <div class="form-group">
