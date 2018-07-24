@@ -16,6 +16,8 @@ $(".item_add").click(function(event){
     Data.addItem(_id, _nome, _descricao, _preco, 1, _imagem);
 
     Data.updateCart();
+
+    document.cookie = '1AMM-CEPX002' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 });
 
 $('#simpleCart_empty').on('click', function(event){

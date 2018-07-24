@@ -195,8 +195,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						$data = json_decode( $_COOKIE["1AMM-CT001"], true );
 						$max = sizeof($data);
 						$frete = 0;
-						if( isset($_GET["cepx"]) ){
-							$dadosCep = explode(";", $_GET["cepx"]);
+						if( isset($_COOKIE["1AMM-CEPX002"]) ){
+							$dadosCep = explode("_", $_COOKIE["1AMM-CEPX002"]);
 							$frete = $dadosCep[1];
 						}
 						$total = 0;
@@ -248,11 +248,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						</div>
 						<div class='col-md-3 cart-total'>
-							<a class='continue' href='#'>Continue to basket</a>
+							<a class='continue' href='./products.php'>Continue comprandro</a>
 							<div class='price-details'>
 								<h3>Price Details</h3>
 								<span>Total dos produtos</span>
-								<span class='total1' id='total1Check'>".$total."</span>
+								<span class='total1' id='total1Check'>R$".$total."</span>
 								<span>Discount</span>
 								<span class='total1'>---</span>
 								<span>Delivery Charges</span>
@@ -260,19 +260,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class='clearfix'></div>				 
 							</div>
 							<br>";
-						if( isset($_COOKIE["1AMM-CV002"]) && $max>0){
+						if( 0 && $max>0){
 
 						}else if($max > 0){
-							if( isset($_GET["cepx"]) ){
-								$dadosCep = explode(";", $_GET["cepx"]);
+							if( isset($_COOKIE["1AMM-CEPX002"]) ){
+								$dadosCep = explode("_", $_COOKIE["1AMM-CEPX002"]);
+								$cep_ = str_replace("-", "", $dadosCep[0]);
+								$cep_ = str_replace(".", "", $cep_);
+								$cep_ = str_replace(" ", "", $cep_);
 
 								$parametros = array();
 								
 								$parametros['nCdEmpresa'] = '';
 								$parametros['sDsSenha'] = '';
 								
-								$parametros['sCepOrigem'] = '35900017';
-								$parametros['sCepDestino'] = '02460000';
+								$parametros['sCepOrigem'] = '35900539';
+								$parametros['sCepDestino'] = $cep_;
 								
 								$parametros['nVlPeso'] = '1';
 								
@@ -305,17 +308,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								$countOps = 0;
 								foreach($dados->cServico as $linhas) {
 									if($linhas->Erro == 0) {
-										echo "<span>".$linhas->Codigo."</span>";
+
+										if($linhas->Codigo == '40010') $codigoServico = 'Sedex: --- ';
+										else $codigoServico = 'PAC: ------ ';
+
 										echo "
 										<div class='radio'>
-											<label><input type='radio' name='optradio' id='opt1".$countOps."'>".$linhas->Valor."</label>
+											<label>".$codigoServico." </label>
+											<label><input type='radio' name='optradio' id='opt1".$countOps."'> R$".$linhas->Valor." - ".$linhas->PrazoEntrega." dia(s)</label>
 											<script>
 												document.getElementById('opt1".$countOps."').onclick = function(){
-													window.location.href='./checkout.php?cepx='+".$dadosCep[0]."+';'+'".str_replace(",", ".", $linhas->Valor)."';
+													var cname = '1AMM-CEPX002';
+													var cvalue = ''+".$dadosCep[0]."+'_'+'".str_replace(",", ".", $linhas->Valor)."';
+													var d = new Date();
+													d.setTime(d.getTime() + (60*60*1000));
+													var expires = 'expires='+ d.toUTCString();
+													document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+
+													location.reload();
 												}
 											</script>
 										</div>";
-										//echo $linhas->PrazoEntrega.' Dias </br>';
+										//echo .' Dias </br>';
 										$countOps = $countOps+1;
 									}else {
 										echo $linhas->MsgErro;
@@ -335,7 +349,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<button type='button' class='btn btn-warning' id='okCEP'>OK</button>
 										<script>
 											document.getElementById('okCEP').onclick = function(){
-												window.location.href='./checkout.php?cepx='+document.getElementById('inputCEP').value+';0,0';
+
+												var cname = '1AMM-CEPX002';
+												var cvalue = document.getElementById('inputCEP').value + '_0.0';
+												var d = new Date();
+												d.setTime(d.getTime() + (60*60*1000));
+												var expires = 'expires='+ d.toUTCString();
+												document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+
+												location.reload();
 											}
 										</script>
 									</div>
@@ -344,18 +366,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							}
 							
 						}
-						$totalFrete = $total + $frete;
+						$totalFrete = $total;
+						if($max>0) $totalFrete = $totalFrete + $frete;
+						
 
 						
 						echo"
 							<ul class='total_price'>
 							<li class='last_price'> <h4>TOTAL</h4></li>	
-							<li class='last_price' id='total2Check'><span>".$totalFrete."</span></li>
+							<li class='last_price' id='total2Check'><span>R$".$totalFrete."</span></li>
 							<div class='clearfix'> </div>
 							</ul>
 							
 							<div class='clearfix'></div>
-							<a class='order' href='#'>Place Order</a>";
+							<a class='order' href='#'>Finalizar compra</a>";
 					}else{
 
 					}
