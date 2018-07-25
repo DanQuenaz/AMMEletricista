@@ -1,13 +1,8 @@
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Login :: w3layouts</title>
+<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Register :: w3layouts</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -34,16 +29,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
 	<div class="header-top">
 		<div class="container">
-		<div class="search">	
-			<input type="text" value="Pesquisar " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" id="inputSearch">
-			<input type="submit" value="Pesquisar" id="btnSearch">
-			<script>
-				document.getElementById('btnSearch').onclick = function() {
-					var cvalue = document.getElementById('inputSearch').value;
-					window.location.href = "./products.php?search=3," + cvalue;
-				};
-			</script>	
-		</div>
+				<div class="search">	
+					<input type="text" value="Pesquisar " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" id="inputSearch">
+					<input type="submit" value="Pesquisar" id="btnSearch">
+					<script>
+						document.getElementById('btnSearch').onclick = function() {
+							var cvalue = document.getElementById('inputSearch').value;
+							window.location.href = "./products.php?search=3," + cvalue;
+						};
+					</script>	
+				</div>
 			<div class="header-left">		
 					<ul>
 						<?php
@@ -71,7 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="cart box_1">
 						<a href="checkout.php" id="checkoutClick">
 						<h3> <div class="total">
-							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
+							<span class="simpleCart_total" id="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> itens)</div>
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
 						<script type="module">
@@ -189,48 +184,129 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	
 <!--content-->
-<div class="container">
-		<div class="account">
-		<h1>Account</h1>
-		<div class="account-pass">
-		<div class="col-md-8 account-top">
-			<form method="POST" action="./php/login.php">
-				<center><div class="form-row">
-					<div class="form-group col-md-6 col-md-offset-6">
-
-						<div class="form-row">
-							<div class="form-group col-md-12">
-								<label for="loginEmail">Email</label>
-								<input type="email"  class="form-control" name="loginEmail" id="loginEmail" placeholder="Seu email" required>
-							</div>
+<div class="register">
+	<h1>Finalizar Compra</h1>
+		<form method="POST" action="./php/register.php"> 
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<h3>Dados Local Entrega</h3><br>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="inputEndereço">Endereço</label>
+						<input type="text" class="form-control" name="inputEndereço" id="inputEndereço" placeholder="Rua B" required autofocus>
+					</div>
+				</div>
+				<div class="form-row">
+				
+					<div class="form-group col-md-2">
+						<label for="inputNumero">Numero</label>
+						<input type="number" step="0" class="form-control" name="inputNumero" id="inputNumero" placeholder="56" required>
+					</div>
+					<div class="form-group col-md-5">
+						<label for="inputBairro">Bairro</label>
+						<input type="text" class="form-control" name="inputBairro" id="inputBairro" placeholder="Bairro" required>
+					</div>
+					<div class="form-group col-md-5">
+						<label for="inputCidade">Cidade</label>
+						<input type="text" class="form-control" name="inputCidade" id="inputCidade" placeholder="Cidade" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-3">
+						<label for="inputEstado">Estado</label>
+						<select name="inputEstado" id="inputEstado" class="form-control" required>
+							<option selected>AC</option>
+							<option>AL</option>
+							<option>AP</option>
+							<option>AM</option>
+							<option>BA</option>
+							<option>CE</option>
+							<option>DF</option>
+							<option>ES</option>
+							<option>GO</option>
+							<option>MA</option>
+							<option>MT</option>
+							<option>MS</option>
+							<option>MG</option>
+							<option>PA</option>
+							<option>PB</option>
+							<option>PR</option>
+							<option>PE</option>
+							<option>PI</option>
+							<option>RJ</option>
+							<option>RN</option>
+							<option>RS</option>
+							<option>RO</option>
+							<option>RR</option>
+							<option>SC</option>
+							<option>SP</option>
+							<option>SE</option>
+							<option>TO</option>
+						</select>
+					</div>
+					<div class="form-group col-md-9">
+						<label for="inputCEP">CEP</label>
+						<input type="text" class="form-control" name="inputCEP" id="inputCEP" placeholder="CEP" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<button type="button" class="btn btn-warning btn-sm" name="useAdress" id="useAdress">Usar meu endereço</button>
+					</div>
+				</div>
+			</div>
+		
+			<div class="form-group col-md-6">
+				<h3>Dados Pagamento</h3><br>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<label for="inputPagamento">Forma de Pagamento</label>
+						<select name="inputPagamento" id="inputPagamento" class="form-control" required>
+							<option selected>Boleto</option>
+							<option>Cartão</option>
+						</select>
+					</div>
+					<div class="form-group col-md-8">
+						<label for="inputCpfPagante">CPF do Pagante</label>
+						<input type="text" class="form-control" name="inputCpfPagante" id="inputCpfPagante" placeholder="CPF" required>
+					</div>
+				</div>
+				<div id="dadosCartao" style="display:none">
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="inputBandeira">Bandeira do Cartão</label>
+							<select name="inputBandeira" id="inputBandeira" class="form-control" required>
+								<option selected>Visa</option>
+								<option>Master</option>
+								<option>ELO</option>
+							</select>
 						</div>
-
-						<div class="form-row">
-							<div class="form-group col-md-12">
-								<label for="loginPassword">Senha</label>
-								<input type="password"  class="form-control" name="loginPassword" id="loginPassword" placeholder="************" required>
-							</div>
+						<div class="form-group col-md-9">
+							<label for="inputCpfPagante">Número do Cartão</label>
+							<input type="text" class="form-control" name="inputCpfPagante" id="inputCpfPagante" placeholder="CPF" required>
 						</div>
-
-						<div class="form-row">
-							<div class="form-group col-md-12">
-								<button type="submit" class="btn btn-warning btn-lg btn-block" name="subimit" id="subimit">Entrar</button>
-							</div>
-							<div class="form-group col-md-12">
-								<a href="./register.php" class="btn btn-info btn-lg btn-block" >Criar Conta</a>
-							</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="inputCpfPagante">Nome Impresso no Cartão</label>
+							<input type="text" class="form-control" name="inputCpfPagante" id="inputCpfPagante" placeholder="CPF" required>
 						</div>
-
-					</div>	
-				</div></center>				
-				<!--input type="submit" value="Logar" name ="subimit" id ="subimit">
-				<a href='#' class='add-cart item_add'>Criar conta</a-->
-			</form>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputCpfPagante">Data Vencimento</label>
+							<input type="text" class="form-control" name="inputCpfPagante" id="inputCpfPagante" placeholder="CPF" required>
+						</div>
+						<div class="form-group col-md-6">	
+							<label for="inputCpfPagante">Digito Verificador</label>
+							<input type="text" class="form-control" name="inputCpfPagante" id="inputCpfPagante" placeholder="CPF" required>
+						</div>
+					</div>
+				</div>
+			</div>
+				<div class="clearfix"> </div>
 		</div>
-	<div class="clearfix"> </div>
-	</div>
-	</div>
-
+		</form>
 </div>
 
 <!--//content-->
@@ -282,6 +358,8 @@ and promo</p>
 
 <!--SCRIPTS-->
 <script type="module" src="./js/checkCart.js"></script>
+<script type="module" src="./js/endPurchase.js"></script>
+
 
 </body>
 </html>

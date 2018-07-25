@@ -305,7 +305,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<h4>".$row["nome"]."</h4>
 								<h5 class='item_price'>R$ ".$row["preco"]."</h5>
 								<p>".$row["descricaoSimples"]."</p>
-								<a  href='' class='item_add' id='addToCart' data-id='" . $row["produtoId"]. "' data-name='" . $row["nome"]."' data-price='" . $row["preco"]. "' data-description='" . $row["descricaoSimples"]."' data-imagem='" . $row["imagem1"]."'><p class='number item_price'><i> </i>R$". $row["preco"]. "</p></a>	
+								<a  href='' class='btn btn-warning btn-lg btn-block' id='addToCart' data-id='" . $row["produtoId"]. "' data-name='" . $row["nome"]."' data-price='" . $row["preco"]. "' data-description='" . $row["descricaoSimples"]."' data-imagem='" . $row["imagem1"]."' data-peso='".$row["peso"]."' data-altura='".$row["altura"]."' data-largura='".$row["largura"]."' data-comprimento='".$row["comprimento"]."'>Adicionar ao Carrinho</a>	
 							</div>
 						</div>
 

@@ -31,6 +31,7 @@ CREATE TABLE Usuarios (
     senha varchar(50) NOT NULL,
     telefone varchar(32) NOT NULL,
     endereco varchar(1000) NOT NULL,
+    numero int NOT NULL,
     bairro varchar(64) NOT NULL,
     cidade varchar(64) NOT NULL,
     estado varchar(32) NOT NULL,

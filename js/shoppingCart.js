@@ -4,8 +4,8 @@ import * as Data from './dataCart';
 
 Data.loadCart();
 Data.updateCart();
-
-$(".item_add").click(function(event){
+//item_add
+$(".btn-block").click(function(event){
     event.preventDefault();
     var _id = $(this).attr("data-id");
     var _nome = $(this).attr("data-name");

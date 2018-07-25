@@ -1,9 +1,4 @@
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -189,106 +184,135 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	
 <!--content-->
-<div class=" container">
 <div class=" register">
 	<h1>Cadastrar</h1>
-		<form method="POST" action="./php/register.php"> 
-			<div class="col-md-6 register-top-grid">
-			<h3>Informações Pessoais</h3>
-				<div>
-					<span>Primeiro Nome</span>
-					<input type="text" name="firstName" id="firstName" required autofocus> 
-				</div>
-				<div>
-					<span>Sobrenome</span>
-					<input type="text" name="lastName" id="lastName" required> 
-				</div>
-				<div>
-					<span>CPF</span>
-					<input type="text" name="cpf" id="cpf" required> 
-				</div>
-				<div>
-					<span>Estado</span><br>
-					<!--input type="text" name="stateName" id="stateName" required-->
-					<select name="stateName" id="stateName" class="form-control" required>
-                      <option selected>AC</option>
-                      <option>AL</option>
-                      <option>AP</option>
-					  <option>AM</option>
-					  <option>BA</option>
-					  <option>CE</option>
-					  <option>DF</option>
-					  <option>ES</option>
-					  <option>GO</option>
-					  <option>MA</option>
-					  <option>MT</option>
-					  <option>MS</option>
-					  <option>MG</option>
-					  <option>PA</option>
-					  <option>PB</option>
-					  <option>PR</option>
-					  <option>PE</option>
-					  <option>PI</option>
-					  <option>RJ</option>
-					  <option>RN</option>
-					  <option>RS</option>
-					  <option>RO</option>
-					  <option>RR</option>
-					  <option>SC</option>
-					  <option>SP</option>
-					  <option>SE</option>
-					  <option>TO</option>
-                  	</select><br>
-				</div>
-				<div>
-					<span>Cidade</span>
-					<input type="text" name="cityName" id="cityName" required> 
-				</div>
-				<div>
-					<span>Endereço</span>
-					<input type="text" name="address" id="addressName" required> 
-			</div>
-			<div>
-				<span>Bairro</span>
-				<input type="text" name="bairroName" id="bairroName" required> 
-			</div>
-			<div>
-				<span>CEP</span>
-				<input type="text" name="cep" id="cep" required> 
-			</div>
-			<div>
-				<span>Telefone</span>
-				<input type="text" name="tel" id="tel" required> 
-			</div>
-				<a class="news-letter" href="#">
-					<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Receber promoções!</label>
-				</a>
-				</div>
-				<div class="col-md-6 register-bottom-grid">
-					<h3>Informações de Login</h3>
-					<div>
-						<span>Email</span>
-						<input type="text" name="email" id="email" required>
+		<form method="POST" action="./php/register.php">
+			<div clas="form-row">
+
+				<div class="form-group col-md-6">
+					<h3>Informações Pessoais</h3><br>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="firstName">Primeiro Nome</label>
+							<input type="text" step="0" class="form-control" name="firstName" id="firstName" placeholder="Primeiro nome" required>
 						</div>
-						<div>
-							<span>Confirme o Email</span>
-							<input type="text" name="confirmEmail" id="confirmEmail" required>
+						<div class="form-group col-md-8">
+							<label for="lastName">Sobre Nome</label>
+							<input type="text" class="form-control" name="lastName" id="lastName" placeholder="Sobre nome" required>
 						</div>
-						<div>
-							<span>Senha</span>
-							<input type="password" name="password" id="password" required>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="cpf">CPF</label>
+							<input type="number" step="off" class="form-control" name="cpf" id="cpf" placeholder="Somente numeros" required>
 						</div>
-						<div>
-							<span>Confirme a Senha</span>
-							<input type="password" name="confirmPassword" id="confirmPassword" required>
+						<div class="form-group col-md-6">
+							<label for="tel">Telefone</label>
+							<input type="text" class="form-control" name="tel" id="tel" placeholder="(xx) x xxxx-xxxx" required>
 						</div>
-						<input type="submit" value="Confirmar" name="cadastrar" id="cadastrar">
-					
+					</div>
+
+					<div class="form-row">
+						<div class="form-group col-md-10">
+							<label for="address">Endereço</label>
+							<input type="text"  class="form-control" name="address" id="address" placeholder="Rua, Avenida xxxxx" required>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="number">Numero</label>
+							<input type="number" class="form-control" name="number" id="number" placeholder="" required>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="bairroName">Bairro</label>
+							<input type="text"  class="form-control" name="bairroName" id="bairroName" placeholder="Seu bairro" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="cityName">Cidade</label>
+							<input type="text"  class="form-control" name="cityName" id="cityName" placeholder="Sua cidade" required>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="stateName">Estado</label>
+							<select name="stateName" id="stateName" class="form-control" required>
+								<option selected>AC</option>
+								<option>AL</option>
+								<option>AP</option>
+								<option>AM</option>
+								<option>BA</option>
+								<option>CE</option>
+								<option>DF</option>
+								<option>ES</option>
+								<option>GO</option>
+								<option>MA</option>
+								<option>MT</option>
+								<option>MS</option>
+								<option>MG</option>
+								<option>PA</option>
+								<option>PB</option>
+								<option>PR</option>
+								<option>PE</option>
+								<option>PI</option>
+								<option>RJ</option>
+								<option>RN</option>
+								<option>RS</option>
+								<option>RO</option>
+								<option>RR</option>
+								<option>SC</option>
+								<option>SP</option>
+								<option>SE</option>
+								<option>TO</option>
+							</select>
+						</div>
+						<div class="form-group col-md-9">
+							<label for="cep">CEP</label>
+							<input type="text"  class="form-control" name="cep" id="cep" placeholder="xx.xxx-xxx" required>
+						</div>
+					</div>
+
 				</div>
-				<div class="clearfix"> </div>
+
+				<div class="form-group col-md-6">
+					<h3>Informações de Login</h3><br>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="email">Email</label>
+							<input type="email"  class="form-control" name="email" id="email" placeholder="Seu email" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="confirmEmail">Confirme o Email</label>
+							<input type="email"  class="form-control" name="confirmEmail" id="confirmEmail" placeholder="Confirme seu email" required>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="password">Senha</label>
+							<input type="password"  class="form-control" name="password" id="password" placeholder="************" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="confirmPassword">Confirme a Senha</label>
+							<input type="password"  class="form-control" name="confirmPassword" id="confirmPassword" placeholder="************" required>
+						</div>
+					</div>
+
+					<div class="form-row">
+					<div class="form-group col-md-12">
+						<button type="submit" class="btn btn-warning btn-lg btn-block" name="cadastrar" id="cadastrar">Criar Conta</button>
+					</div>
+				</div>
+				</div>
+
+			</div>
+
+			<div class="clearfix"> </div>
 		</form>
-	</div>
 </div>
+
 <!--//content-->
 <div class="footer">
 				<div class="container">

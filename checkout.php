@@ -190,227 +190,281 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <div class="container">
 	<div class="check">	 
-				<?php
-					if( isset($_COOKIE["1AMM-CT001"]) ){
-						$data = json_decode( $_COOKIE["1AMM-CT001"], true );
-						$max = sizeof($data);
-						$frete = 0;
-						if( isset($_COOKIE["1AMM-CEPX002"]) ){
-							$dadosCep = explode("_", $_COOKIE["1AMM-CEPX002"]);
-							$frete = $dadosCep[1];
-						}
-						$total = 0;
+		<?php
+			if( isset($_COOKIE["1AMM-CT001"]) ){
 
-						$peso = 0.0;
-						$alturaMin = 0.0;
-						$larguraMin = 0.0;
-						$comprimentoMin = 0.0;
-						$volume = 0.0;
-
-						echo"
-						<h1>Meu Carrinho (".$max.")</h1>
-						<div class='col-md-9 cart-items'>
-						<div id='productsCheckout'>";
-						for($i=0; $i<$max; $i++){
-
-							$subtotal = $data[$i]["quant"] * $data[$i]["preco"];
-							$total += $subtotal;
-							$peso += $data[$i]["peso"] * $data[$i]["quant"];
-							$volume += $data[$i]["altura"] * $data[$i]["largura"] * $data[$i]["comprimento"] * $data[$i]["quant"];;
-
-							if($data[$i]["altura"] > $alturaMin) $alturaMin = $data[$i]["altura"];
-							if($data[$i]["largura"] > $larguraMin) $larguraMin = $data[$i]["largura"];
-							if($data[$i]["comprimento"] > $comprimentoMin) $comprimentoMin = $data[$i]["comprimento"];
-
-							echo
-							"
-							 <div class='cart-header'>
-								 <a  href='#' id='x".$i."'><img src='../images/close_1.png' class='img-responsive' alt='Deletar item'/></a>
-								 <script type='module'>
-									import * as DATA from './js/dataCart';
-									document.getElementById('x".$i."').onclick=function(){
-										//console.log(".$data[$i]["id"].");
-										DATA.loadCart();
-										DATA.deleteItem(".$data[$i]["id"].");
-										DATA.saveCartCookie();
-										location.reload();
-									};
-								</script>
-								 <div class='cart-sec simpleCart_shelfItem'>
-										 <div class='cart-item cyc'>
-											 <img src='../images/".$data[$i]["imagem"]."' class='img-responsive' alt=''/>
-										 </div>
-									 <div class='cart-item-info'>
-											 <h3><a href='single.php?itemid=".$data[$i]["id"]."'>".$data[$i]["nome"]."</a><span>".$data[$i]["descricao"]."</span></h3>
-											 <ul class='qty'>
-												 <li><p>Quantidade: ".$data[$i]["quant"]."</p></li><br>
-												 <li><p>Prç. unitário: R$".$data[$i]["preco"]."</p></li><br>
-											 </ul>
-											 <div class='delivery'>
-												 <p><b>Total : R$".$subtotal."</b></p>
-												 <!--span>Delivered in 2-3 bussiness days</span-->
-												 <div class='clearfix'></div>
-											 </div>								
-									 </div>
-									 <div class='clearfix'></div>                       
-								 </div>
-							 </div>";
-						}
-						if($max == 0){
-							echo"Carrinho vazio!";
-						}
-						echo"
-						</div>
-						</div>
-						<div class='col-md-3 cart-total'>
-							<a class='continue' href='./products.php'>Continue comprandro</a>
-							<div class='price-details'>
-								<h3>Price Details</h3>
-								<span>Total dos produtos</span>
-								<span class='total1' id='total1Check'>R$".$total."</span>
-								<span>Discount</span>
-								<span class='total1'>---</span>
-								<span>Delivery Charges</span>
-								<span class='total1'>150.00</span>
-								<div class='clearfix'></div>				 
-							</div>
-							<br>";
-						if( 0 && $max>0){
-
-						}else if($max > 0){
-							if( isset($_COOKIE["1AMM-CEPX002"]) ){
-								$dadosCep = explode("_", $_COOKIE["1AMM-CEPX002"]);
-								$cep_ = str_replace("-", "", $dadosCep[0]);
-								$cep_ = str_replace(".", "", $cep_);
-								$cep_ = str_replace(" ", "", $cep_);
-								$volumeCalc = 0.0;
-								
-								while($volumeCalc < $volume){
-									$volumeCalc = $alturaMin * $larguraMin * $comprimentoMin;
-									if($volumeCalc < $volume){
-										$larguraMin += 0.1;
-										$alturaMin += 0.1;
-										$comprimentoMin += 0.1;
-									}
-								}
-
-								$parametros = array();
-								
-								$parametros['nCdEmpresa'] = '';
-								$parametros['sDsSenha'] = '';
-								
-								$parametros['sCepOrigem'] = '35900539';
-								$parametros['sCepDestino'] = $cep_;
-								
-								$parametros['nVlPeso'] = $peso;
-								
-								$parametros['nCdFormato'] = '1';
-								
-								$parametros['nVlComprimento'] = $comprimentoMin;
-								$parametros['nVlAltura'] = $alturaMin;
-								$parametros['nVlLargura'] = $larguraMin;
-								$parametros['nVlDiametro'] = '0';
-								
-								$parametros['sCdMaoPropria'] = 's';
-								
-								if($total > 18.50 )$parametros['nVlValorDeclarado'] = $total;
-								else $parametros['nVlValorDeclarado'] = '0';
-								
-								$parametros['sCdAvisoRecebimento'] = 'n';
-								
-								$parametros['StrRetorno'] = 'xml';
-								
-								$parametros['nCdServico'] = '40010,41106';
-								
-								$parametros = http_build_query($parametros);
-								$url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
-								$curl = curl_init($url.'?'.$parametros);
-								curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-								$dados = curl_exec($curl);
-								$dados = simplexml_load_string($dados);
-								echo"
-								<div class='price-details'>
-									<h3>Frete</h3>";
-								$countOps = 0;
-								foreach($dados->cServico as $linhas) {
-									if($linhas->Erro == 0) {
-
-										if($linhas->Codigo == '40010') $codigoServico = 'Sedex: --- ';
-										else $codigoServico = 'PAC: ------ ';
-
-										echo "
-										<div class='radio'>
-											<label>".$codigoServico." </label>
-											<label><input type='radio' name='optradio' id='opt1".$countOps."'> R$".$linhas->Valor." - ".$linhas->PrazoEntrega." dia(s)</label>
-											<script>
-												document.getElementById('opt1".$countOps."').onclick = function(){
-													var cname = '1AMM-CEPX002';
-													var cvalue = ''+".$dadosCep[0]."+'_'+'".str_replace(",", ".", $linhas->Valor)."';
-													var d = new Date();
-													d.setTime(d.getTime() + (60*60*1000));
-													var expires = 'expires='+ d.toUTCString();
-													document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
-
-													location.reload();
-												}
-											</script>
-										</div>";
-										//echo .' Dias </br>';
-										$countOps = $countOps+1;
-									}else {
-										echo $linhas->MsgErro;
-									}
-								}
-								echo"
-								</div>
+				if( isset($_COOKIE["1AMM-REDIRECT"]) ){
+					if( isset($_COOKIE["1AMM-CEPX002"]) ){
+						$check_ = explode("_", $_COOKIE["1AMM-CEPX002"]);
+						if($check_[1] != '0.0'){
+							if( isset($_COOKIE["1AMM-CV002"]) ){
+								echo "
+									<script>
+										document.cookie = '1AMM-REDIRECT' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+										window.location.href='./endPurchase.php';
+									</script>
 								";
-								
 							}else{
-								echo"
-								<div class='price-details'>
-									<h3>Frete</h3>
-									<div class='radio'>
-										<span>CEP</span>
-										<input type='text' name='inputCEP' id='inputCEP'>
-										<button type='button' class='btn btn-warning' id='okCEP'>OK</button>
-										<script>
-											document.getElementById('okCEP').onclick = function(){
-
-												var cname = '1AMM-CEPX002';
-												var cvalue = document.getElementById('inputCEP').value + '_0.0';
-												var d = new Date();
-												d.setTime(d.getTime() + (60*60*1000));
-												var expires = 'expires='+ d.toUTCString();
-												document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
-
-												location.reload();
-											}
-										</script>
-									</div>
-								</div>
+								echo "
+									<script>
+										alert('Você precisa estar logado para finalizar a compra!');
+										document.cookie = '1AMM-REDIRECT' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+										window.location.href='./login.php';
+									</script>
 								";
 							}
-							
+						}else{
+							echo "
+								<script>
+									alert('Selecione uma das opções de entrega antes de finalizar a compra!');
+								</script>
+							";
 						}
-						$totalFrete = $total;
-						if($max>0) $totalFrete = $totalFrete + $frete;
-						
-
-						
-						echo"
-							<ul class='total_price'>
-							<li class='last_price'> <h4>TOTAL</h4></li>	
-							<li class='last_price' id='total2Check'><span>R$".$totalFrete."</span></li>
-							<div class='clearfix'> </div>
-							</ul>
-							
-							<div class='clearfix'></div>
-							<a class='order' href='#'>Finalizar compra</a>";
 					}else{
-
+						echo "
+							<script>
+								alert('Insira o cep para entrega antes de finalizar a compra!');
+							</script>
+						";
 					}
+				}
 
-				?>
+				$data = json_decode( $_COOKIE["1AMM-CT001"], true );
+				$max = sizeof($data);
+				$frete = 0;
+				if( isset($_COOKIE["1AMM-CEPX002"]) ){
+					$dadosCep = explode("_", $_COOKIE["1AMM-CEPX002"]);
+					$frete = $dadosCep[1];
+				}
+				$total = 0;
+
+				$peso = 0.0;
+				$alturaMin = 0.0;
+				$larguraMin = 0.0;
+				$comprimentoMin = 0.0;
+				$volume = 0.0;
+
+				echo"
+				<h1>Meu Carrinho (".$max.")</h1>
+				<div class='col-md-9 cart-items'>
+				<div id='productsCheckout'>";
+				for($i=0; $i<$max; $i++){
+
+					$subtotal = $data[$i]["quant"] * $data[$i]["preco"];
+					$total += $subtotal;
+					$peso += $data[$i]["peso"] * $data[$i]["quant"];
+					$volume += $data[$i]["altura"] * $data[$i]["largura"] * $data[$i]["comprimento"] * $data[$i]["quant"];;
+
+					if($data[$i]["altura"] > $alturaMin) $alturaMin = $data[$i]["altura"];
+					if($data[$i]["largura"] > $larguraMin) $larguraMin = $data[$i]["largura"];
+					if($data[$i]["comprimento"] > $comprimentoMin) $comprimentoMin = $data[$i]["comprimento"];
+
+					echo
+					"
+						<div class='cart-header'>
+							<a  href='#' id='x".$i."'><img src='../images/close_1.png' class='img-responsive' alt='Deletar item'/></a>
+							<script type='module'>
+							import * as DATA from './js/dataCart';
+							document.getElementById('x".$i."').onclick=function(){
+								//console.log(".$data[$i]["id"].");
+								DATA.loadCart();
+								DATA.deleteItem(".$data[$i]["id"].");
+								DATA.saveCartCookie();
+								location.reload();
+							};
+						</script>
+							<div class='cart-sec simpleCart_shelfItem'>
+									<div class='cart-item cyc'>
+										<img src='../images/".$data[$i]["imagem"]."' class='img-responsive' alt=''/>
+									</div>
+								<div class='cart-item-info'>
+										<h3><a href='single.php?itemid=".$data[$i]["id"]."'>".$data[$i]["nome"]."</a><span>".$data[$i]["descricao"]."</span></h3>
+										<ul class='qty'>
+											<li><p>Quantidade: ".$data[$i]["quant"]."</p></li><br>
+											<li><p>Prç. unitário: R$".$data[$i]["preco"]."</p></li><br>
+										</ul>
+										<div class='delivery'>
+											<p><b>Total : R$".$subtotal."</b></p>
+											<!--span>Delivered in 2-3 bussiness days</span-->
+											<div class='clearfix'></div>
+										</div>								
+								</div>
+								<div class='clearfix'></div>                       
+							</div>
+						</div>";
+				}
+				if($max == 0){
+					echo"Carrinho vazio!";
+				}
+				echo"
+				</div>
+				</div>
+				<div class='col-md-3 cart-total'>
+					<a class='continue' href='./products.php'>Continue comprandro</a>
+					<div class='price-details'>
+						<h3>Price Details</h3>
+						<span>Total dos produtos</span>
+						<span class='total1' id='total1Check'>R$".$total."</span>
+						<span>Discount</span>
+						<span class='total1'>---</span>
+						<span>Delivery Charges</span>
+						<span class='total1'>150.00</span>
+						<div class='clearfix'></div>				 
+					</div>
+					<br>";
+				if( 0 && $max>0){
+
+				}else if($max > 0){
+					if( isset($_COOKIE["1AMM-CEPX002"]) ){
+						$dadosCep = explode("_", $_COOKIE["1AMM-CEPX002"]);
+						$cep_ = str_replace("-", "", $dadosCep[0]);
+						$cep_ = str_replace(".", "", $cep_);
+						$cep_ = str_replace(" ", "", $cep_);
+						$volumeCalc = 0.0;
+						
+						while($volumeCalc < $volume){
+							$volumeCalc = $alturaMin * $larguraMin * $comprimentoMin;
+							if($volumeCalc < $volume){
+								$larguraMin += 0.1;
+								$alturaMin += 0.1;
+								$comprimentoMin += 0.1;
+							}
+						}
+
+						$parametros = array();
+						
+						$parametros['nCdEmpresa'] = '';
+						$parametros['sDsSenha'] = '';
+						
+						$parametros['sCepOrigem'] = '35900539';
+						$parametros['sCepDestino'] = $cep_;
+						
+						$parametros['nVlPeso'] = $peso;
+						
+						$parametros['nCdFormato'] = '1';
+						
+						$parametros['nVlComprimento'] = $comprimentoMin;
+						$parametros['nVlAltura'] = $alturaMin;
+						$parametros['nVlLargura'] = $larguraMin;
+						$parametros['nVlDiametro'] = '0';
+						
+						$parametros['sCdMaoPropria'] = 's';
+						
+						if($total > 18.50 )$parametros['nVlValorDeclarado'] = $total;
+						else $parametros['nVlValorDeclarado'] = '0';
+						
+						$parametros['sCdAvisoRecebimento'] = 'n';
+						
+						$parametros['StrRetorno'] = 'xml';
+						
+						$parametros['nCdServico'] = '40010,41106';
+						
+						$parametros = http_build_query($parametros);
+						$url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
+						$curl = curl_init($url.'?'.$parametros);
+						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+						$dados = curl_exec($curl);
+						$dados = simplexml_load_string($dados);
+						echo"
+						<div class='price-details'>
+							<h3>Frete</h3>";
+						$countOps = 0;
+						foreach($dados->cServico as $linhas) {
+							if($linhas->Erro == 0) {
+
+								if($linhas->Codigo == '40010') $codigoServico = 'Sedex: --- ';
+								else $codigoServico = 'PAC: ------ ';
+
+								echo "
+								<div class='radio'>
+									<label>".$codigoServico." </label>
+									<label><input type='radio' name='optradio' id='opt1".$countOps."'> R$".$linhas->Valor." - ".$linhas->PrazoEntrega." dia(s)</label>
+									<script>
+										document.getElementById('opt1".$countOps."').onclick = function(){
+											var cname = '1AMM-CEPX002';
+											var cvalue = ''+".$dadosCep[0]."+'_'+'".str_replace(",", ".", $linhas->Valor)."';
+											var d = new Date();
+											d.setTime(d.getTime() + (60*60*1000));
+											var expires = 'expires='+ d.toUTCString();
+											document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+
+											document.cookie = '1AMM-REDIRECT' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+											location.reload();
+										}
+									</script>
+								</div>";
+								//echo .' Dias </br>';
+								$countOps = $countOps+1;
+							}else {
+								echo $linhas->MsgErro;
+							}
+						}
+						echo"
+						</div>
+						";
+						
+					}else{
+						echo"
+						<div class='price-details'>
+							<h3>Frete</h3>
+							<div class='radio'>
+								<span>CEP</span>
+								<input type='text' name='inputCEP' id='inputCEP'>
+								<button type='button' class='btn btn-warning' id='okCEP'>OK</button>
+								<script>
+									document.getElementById('okCEP').onclick = function(){
+
+										var cname = '1AMM-CEPX002';
+										var cvalue = document.getElementById('inputCEP').value + '_0.0';
+										var d = new Date();
+										d.setTime(d.getTime() + (60*60*1000));
+										var expires = 'expires='+ d.toUTCString();
+										document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+
+										document.cookie = '1AMM-REDIRECT' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+										location.reload();
+									}
+								</script>
+							</div>
+						</div>
+						";
+					}
+					
+				}
+				$totalFrete = $total;
+				if($max>0) $totalFrete = $totalFrete + $frete;
+				
+
+				
+				echo"
+					<ul class='total_price'>
+					<li class='last_price'> <h4>TOTAL</h4></li>	
+					<li class='last_price' id='total2Check'><span>R$".$totalFrete."</span></li>
+					<div class='clearfix'> </div>
+					</ul>
+					
+					<div class='clearfix'></div>
+					<a class='order' href='#' id='endPurchaseClick'>Finalizar compra</a>
+					<script>
+						document.getElementById('endPurchaseClick').onclick = function(){
+							var cname = '1AMM-REDIRECT';
+							var cvalue = 'TRUE0039348c8cj82';
+							var d = new Date();
+							d.setTime(d.getTime() + (60*60*1000));
+							var expires = 'expires='+ d.toUTCString();
+							document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+
+							location.reload();
+						}
+					</script>
+					";
+			}else{
+
+			}
+
+		?>
 		 
 		  
 			<!--div class="total-item">
