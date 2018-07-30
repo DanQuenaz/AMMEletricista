@@ -1,25 +1,37 @@
 <?php
+
+
+
 class PagSeguro{
-	private $email         = "SEU EMAIL USADO NO CADASTRO DO PAGSEGURO";
-	private $token_sandbox = "TOKEN DO SANDBOX";
+	private $email         = "danquenazz@gmail.com";
+	private $token_sandbox = "B28E0CCE22824D5E8A9DC9AFF94D96EA";
 	private $token_oficial = "TOKEN DO PAGSEGURO";
-	private $url_retorno   = "http://SEUSITE/pagseguro/notificacao.php";
+	private $url_retorno   = "http://localhost/ammeletricista/php/notificacao.php";
+
+	private $servername = "localhost";
+	private $username = "root";
+	private $password = "";
+	private $dbname = "ammeletricista";
+	private $conn;
+
+	public $max_ = 0;
+	public $totalPreco_ = 0.0;
+	public $enderecoEntrega_ = "";
 	
 	//URL OFICIAL
 	//COMENTE AS 4 LINHAS ABAIXO E DESCOMENTE AS URLS DA SANDBOX PARA REALIZAR TESTES
-	private $url              = "https://ws.pagseguro.uol.com.br/v2/checkout/";
-	private $url_redirect     = "https://pagseguro.uol.com.br/v2/checkout/payment.html?code=";
-	private $url_notificacao  = 'https://ws.pagseguro.uol.com.br/v2/transactions/notifications/';
-	private $url_transactions = 'https://ws.pagseguro.uol.com.br/v2/transactions/';
+	// private $url              = "https://ws.pagseguro.uol.com.br/v2/checkout/";
+	// private $url_redirect     = "https://pagseguro.uol.com.br/v2/checkout/payment.html?code=";
+	// private $url_notificacao  = 'https://ws.pagseguro.uol.com.br/v2/transactions/notifications/';
+	// private $url_transactions = 'https://ws.pagseguro.uol.com.br/v2/transactions/';
 
 	//URL SANDBOX
 	//DESCOMENTAR PARA REALIZAR TESTES
-	/*
 	private $url              = "https://ws.sandbox.pagseguro.uol.com.br/v2/checkout/";
 	private $url_redirect     = "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=";
 	private $url_notificacao  = 'https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/';
 	private $url_transactions = 'https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/';
-	*/
+
 	
 	private $email_token = "";//NÃO MODIFICAR
 	private $statusCode = array(0=>"Pendente",
@@ -32,50 +44,79 @@ class PagSeguro{
 								7=>"Cancelada");
 		
 	public function __construct(){
-		$this->email_token = "?email=".$this->email."&token=".$this->token_oficial;
+		$this->email_token = "?email=".$this->email."&token=".$this->token_sandbox;
 		$this->url .= $this->email_token;
+
+		$this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+		// Check connection
+		if ($this->conn->connect_error) {
+			die("Connection failed: " . $this->conn->connect_error);
+		} 
 	}
 		
 	private function generateUrl($dados,$retorno){
 		//Configurações
 		$data['email'] = $this->email;
-		$data['token'] = $this->token_oficial;
+		$data['token'] = $this->token_sandbox;
 		$data['currency'] = 'BRL';
 		
 		//Itens
-		$data['itemId1'] = '0001';
-		$data['itemDescription1'] = $dados['descricao'];
-		$data['itemAmount1'] = number_format($dados['valor'],2,".","");
-		$data['itemQuantity1'] = '1';
-		$data['itemWeight1'] = '0';
+		if( ! isset($_COOKIE["1AMM-CT001"]) ){
+			//TRATAR QUANDO NÂO TEM COOKIE
+		}
+		if( ! isset($_COOKIE["1AMM-CEPX002"]) ){
+			//TRATAR QUANDO NÂO TEM COOKIE
+		}
+
+		$cepData_ = explode("_", $_COOKIE['1AMM-CEPX002']);
+
+		$itens_ = json_decode( $_COOKIE["1AMM-CT001"], true );
+		$this->max_ = sizeof($itens_);
+
+		for($i=0; $i<$this->max_; $i++){
+			$data['itemId'.($i+1)] = $itens_[$i]['id'];
+			$data['itemDescription'.($i+1)] = $itens_[$i]['descricao'];
+			$data['itemAmount'.($i+1)] = number_format($itens_[$i]['preco'],2,".","");
+			$data['itemQuantity'.($i+1)] = $itens_[$i]['quant'];
+			$data['itemWeight'.($i+1)] = '0';
+			if($i == 0) $data['itemShippingCost'.($i+1)] = number_format( $cepData_[1]/$itens_[$i]['quant'], 2, ".", "" );
+			else $data['itemShippingCost'.($i+1)] = '0.00';
+
+			$this->totalPreco_ += $itens_[$i]['preco'] * $itens_[$i]['quant'];
+		}
+
+		
 		
 		//Dados do pedido
 		$data['reference'] = $dados['codigo'];		
 			
 		//Dados do comprador
 		
-		//Tratar telefone
-		$telefone = implode("",explode("-",substr($dados['telefone'],5,strlen($dados['telefone']))));
-		$ddd = substr($dados['telefone'],1,2);
+		// //Tratar telefone
 		
-		//Tratar CEP
-		$cep = implode("",explode("-",$dados['cep']));
-		$cep = implode("",explode(".",$cep));
+		$telefone = substr($dados['telefone'],2,strlen($dados['telefone']));
+		$ddd = substr($dados['telefone'],0,2);
+		
+		// //Tratar CEP
+		// $cep = implode("",explode("-",$dados['cep']));
+		// $cep = implode("",explode(".",$cep));
 		
 		$data['senderName'] = $dados['nome'];
 		$data['senderAreaCode'] = $ddd;
 		$data['senderPhone'] = $telefone;
 		$data['senderEmail'] = $dados['email'];
-		$data['shippingType'] = '3';
+		$data['shippingType'] = $cepData_[2];
 		$data['shippingAddressStreet'] = $dados['rua'];
 		$data['shippingAddressNumber'] = $dados['numero'];
 		$data['shippingAddressComplement'] = " ";
 		$data['shippingAddressDistrict'] = $dados['bairro'];
-		$data['shippingAddressPostalCode'] = $cep;
+		$data['shippingAddressPostalCode'] = $dados['cep'];
 		$data['shippingAddressCity'] = $dados['cidade'];
 		$data['shippingAddressState'] = strtoupper($dados['estado']);
 		$data['shippingAddressCountry'] = 'BRA';
 		$data['redirectURL'] = $retorno;
+
+		$this->enderecoEntrega_ = $dados['rua'].", nº ".$dados['numero'].", ".$dados['bairro'].", ".$dados['cidade']." - ".$dados['estado']." CEP: ".$dados['cep'];
 			
 		return http_build_query($data);
 	}
@@ -111,7 +152,23 @@ class PagSeguro{
 			echo "Erro-> ".var_export($xml_obj->errors,true);
 			exit;
 		}
-		header('Location: '.$this->url_redirect.$xml_obj->code);
+
+		$dataUser_ = explode( ",", $_COOKIE['1AMM-CV002'] ); 
+
+		$d = new DateTime();
+		$d->setTimeZone(new DateTimeZone('America/Sao_Paulo'));
+		$d->format("U");
+		// var_dump($d->getTimestamp()); // 1457690400
+		// echo $d->getTimestamp();
+
+		$dataCompra_ = date('Y-m-d H:i:s', $d->getTimestamp());
+
+		$sql = "INSERT INTO `pedidos` (`pedidoId`, `numero_produtos`, `preco_total`, `endereco_entrega`, `status_`, `hora_compra`, `usuarioId`, `codigoPs`, `status_entrega`) VALUES (NULL, '".$this->max_."', '".$this->totalPreco_."', '".$this->enderecoEntrega_."', 'Aguardando Pagamento', '".$dataCompra_."', '".$dataUser_[1]."', '-', '-');";
+
+		if( $this->conn->query($sql) ){
+			header('Location: '.$this->url_redirect.$xml_obj->code);
+		}
+		
 	}
 	
 	//RECEBE UMA NOTIFICAÇÃO DO PAGSEGURO

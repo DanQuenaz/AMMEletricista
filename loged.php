@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Register :: w3layouts</title>
+<title>AMM Eletricista</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -210,8 +210,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span><h4>".$row["endereco"].", ".$row["bairro"].", ".$row["cidade"]." - ".$row["estado"]."</h4></span><br>
 					<h4>Total de pedidos: <span>".$row2["COUNT(pedidoId)"]."</span></4><br>
 
-					<a href='./editClient.php' class='add-cart item_add'>Editar dados</a>
-					<a href='#' class='add-cart item_add'>Meus pedidos</a>
+					<a href='./editClient.php' class='btn btn-warning'>Editar dados</a>
+					<a href='#' class='btn btn-danger'>Sair</a>
 					
 				</div>
 				<div class='col-md-6 register-bottom-grid'>

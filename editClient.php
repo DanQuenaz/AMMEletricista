@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Register :: w3layouts</title>
+<title>AMM Eletricista</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -197,69 +197,132 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
             echo"
-            <form method='POST' action='./php/alterUser.php'> 
-                <div class='col-md-6 register-top-grid'>
-                <h3>Informações Pessoais</h3>
-                    <div>
-                        <span>Primeiro Nome</span>
-                        <input type='text' name='firstName' id='firstName' value='".$row["primeiroNome"]."' required autofocus> 
-                    </div>
-                    <div>
-                        <span>Sobrenome</span>
-                        <input type='text' name='lastName' id='lastName' value='".$row["sobreNome"]."' required> 
-                    </div>
-                    <div>
-                        <span>CPF</span>
-                        <input type='text' name='cpf' id='cpf' value='".$row["cpf"]."' required> 
-                    </div>
-                    <div>
-                        <span>Estado</span>
-                        <input type='text' name='stateName' id='stateName' value='".$row["estado"]."' required> 
-                    </div>
-                    <div>
-                        <span>Cidade</span>
-                        <input type='text' name='cityName' id='cityName' value='".$row["cidade"]."' required> 
-                    </div>
-                    <div>
-                        <span>Endereço</span>
-                        <input type='text' name='address' id='addressName' value='".$row["endereco"]."' required> 
-                    </div>
-                    <div>
-                        <span>Bairro</span>
-                        <input type='text' name='bairroName' id='bairroName' value='".$row["bairro"]."' required> 
-                    </div>
-                    <div>
-                        <span>CEP</span>
-                        <input type='text' name='cep' id='cep' value='".$row["cep"]."' required> 
-                    </div>
-                    <div>
-                        <span>Telefone</span>
-                        <input type='text' name='tel' id='tel' value='".$row["telefone"]."' required> 
-                    </div>
-                </div>
-                <div class='col-md-6 register-bottom-grid'>
-                        <h3>Informações de Login</h3>
-                        <div>
-                            <span>Email</span>
-                            <input type='text' name='email' id='email' value='".$row["email"]."' required>
-                            </div>
-                            <div>
-                                <span>Confirme o Email</span>
-                                <input type='text' name='confirmEmail' id='confirmEmail' value='".$row["email"]."' required>
-                            </div>
-                            <div>
-                                <span>Senha</span>
-                                <input type='password' name='password' id='password' value='-1-1-1-1-1-' required>
-                            </div>
-                            <div>
-                                <span>Confirme a Senha</span>
-                                <input type='password' name='confirmPassword' id='confirmPassword' value='-1-1-1-1-1-' required>
-                            </div>
-                            <input type='submit' value='Confirmar' name='alterar' id='alterar'>
-                        
-                </div>
-                    <div class='clearfix'> </div>
-            </form>
+            <form method='POST' action='./php/alterUser.php'>
+			<div clas='form-row'>
+
+				<div class='form-group col-md-6'>
+					<h3>Informações Pessoais</h3><br>
+					<div class='form-row'>
+						<div class='form-group col-md-4'>
+							<label for='firstName'>Primeiro Nome</label>
+							<input type='text' step='0' class='form-control' name='firstName' id='firstName' placeholder='Primeiro nome' value='".$row["primeiroNome"]."' required>
+						</div>
+						<div class='form-group col-md-8'>
+							<label for='lastName'>Sobre Nome</label>
+							<input type='text' class='form-control' name='lastName' id='lastName' placeholder='Sobre nome' value='".$row["sobreNome"]."' required>
+						</div>
+					</div>
+
+					<div class='form-row'>
+						<div class='form-group col-md-6'>
+							<label for='cpf'>CPF</label>
+							<input type='number' step='off' class='form-control' name='cpf' id='cpf' placeholder='Somente numeros' value='".$row["cpf"]."' required>
+						</div>
+						<div class='form-group col-md-6'>
+							<label for='tel'>Telefone</label>
+							<input type='text' class='form-control' name='tel' id='tel' placeholder='(xx) x xxxx-xxxx' value='".$row["telefone"]."' required>
+						</div>
+					</div>
+
+					<div class='form-row'>
+						<div class='form-group col-md-10'>
+							<label for='address'>Endereço</label>
+							<input type='text'  class='form-control' name='address' id='address' placeholder='Rua, Avenida xxxxx' value='".$row["endereco"]."' required>
+						</div>
+						<div class='form-group col-md-2'>
+							<label for='number'>Numero</label>
+							<input type='number' class='form-control' name='number' id='number' placeholder='' required>
+						</div>
+					</div>
+
+					<div class='form-row'>
+						<div class='form-group col-md-6'>
+							<label for='bairroName'>Bairro</label>
+							<input type='text'  class='form-control' name='bairroName' id='bairroName' placeholder='Seu bairro' value='".$row["bairro"]."' required>
+						</div>
+						<div class='form-group col-md-6'>
+							<label for='cityName'>Cidade</label>
+							<input type='text'  class='form-control' name='cityName' id='cityName' placeholder='Sua cidade' value='".$row["cidade"]."' required>
+						</div>
+					</div>
+
+					<div class='form-row'>
+						<div class='form-group col-md-3'>
+							<label for='stateName'>Estado</label>
+							<select name='stateName' id='stateName' class='form-control' required>
+								<option selected>".$row["estado"]."</option>
+								<option>AC</option>
+								<option>AL</option>
+								<option>AP</option>
+								<option>AM</option>
+								<option>BA</option>
+								<option>CE</option>
+								<option>DF</option>
+								<option>ES</option>
+								<option>GO</option>
+								<option>MA</option>
+								<option>MT</option>
+								<option>MS</option>
+								<option>MG</option>
+								<option>PA</option>
+								<option>PB</option>
+								<option>PR</option>
+								<option>PE</option>
+								<option>PI</option>
+								<option>RJ</option>
+								<option>RN</option>
+								<option>RS</option>
+								<option>RO</option>
+								<option>RR</option>
+								<option>SC</option>
+								<option>SP</option>
+								<option>SE</option>
+								<option>TO</option>
+							</select>
+						</div>
+						<div class='form-group col-md-9'>
+							<label for='cep'>CEP</label>
+							<input type='text'  class='form-control' name='cep' id='cep' placeholder='xx.xxx-xxx' value='".$row["cep"]."' required>
+						</div>
+					</div>
+
+				</div>
+
+				<div class='form-group col-md-6'>
+					<h3>Informações de Login</h3><br>
+					<div class='form-row'>
+						<div class='form-group col-md-6'>
+							<label for='email'>Email</label>
+							<input type='email'  class='form-control' name='email' id='email' placeholder='Seu email' value='".$row["email"]."' required>
+						</div>
+						<div class='form-group col-md-6'>
+							<label for='confirmEmail'>Confirme o Email</label>
+							<input type='email'  class='form-control' name='confirmEmail' id='confirmEmail' placeholder='Confirme seu email' value='".$row["email"]."' required>
+						</div>
+					</div>
+
+					<div class='form-row'>
+						<div class='form-group col-md-6'>
+							<label for='password'>Senha</label>
+							<input type='password'  class='form-control' name='password' id='password' placeholder='************' value='-1-1-1-1-1-' required>
+						</div>
+						<div class='form-group col-md-6'>
+							<label for='confirmPassword'>Confirme a Senha</label>
+							<input type='password'  class='form-control' name='confirmPassword' id='confirmPassword' placeholder='************' value='-1-1-1-1-1-' required>
+						</div>
+					</div>
+
+					<div class='form-row'>
+					<div class='form-group col-md-12'>
+						<button type='submit' class='btn btn-warning btn-lg btn-block' name='alterar' id='alterar'>Alterar Dados</button>
+					</div>
+				</div>
+				</div>
+
+			</div>
+
+			<div class='clearfix'> </div>
+		</form>
             ";
         }
         

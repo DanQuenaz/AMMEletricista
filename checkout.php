@@ -193,42 +193,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<?php
 			if( isset($_COOKIE["1AMM-CT001"]) ){
 
-				if( isset($_COOKIE["1AMM-REDIRECT"]) ){
-					if( isset($_COOKIE["1AMM-CEPX002"]) ){
-						$check_ = explode("_", $_COOKIE["1AMM-CEPX002"]);
-						if($check_[1] != '0.0'){
-							if( isset($_COOKIE["1AMM-CV002"]) ){
-								echo "
-									<script>
-										document.cookie = '1AMM-REDIRECT' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-										window.location.href='./endPurchase.php';
-									</script>
-								";
-							}else{
-								echo "
-									<script>
-										alert('Você precisa estar logado para finalizar a compra!');
-										document.cookie = '1AMM-REDIRECT' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-										window.location.href='./login.php';
-									</script>
-								";
-							}
-						}else{
-							echo "
-								<script>
-									alert('Selecione uma das opções de entrega antes de finalizar a compra!');
-								</script>
-							";
-						}
-					}else{
-						echo "
-							<script>
-								alert('Insira o cep para entrega antes de finalizar a compra!');
-							</script>
-						";
-					}
-				}
-
 				$data = json_decode( $_COOKIE["1AMM-CT001"], true );
 				$max = sizeof($data);
 				$frete = 0;
@@ -262,7 +226,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					echo
 					"
 						<div class='cart-header'>
-							<a  href='#' id='x".$i."'><img src='../images/close_1.png' class='img-responsive' alt='Deletar item'/></a>
+							<a  href='#' id='x".$i."'><img src='./images/close_1.png' class='img-responsive' alt='Deletar item'/></a>
 							<script type='module'>
 							import * as DATA from './js/dataCart';
 							document.getElementById('x".$i."').onclick=function(){
@@ -275,7 +239,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</script>
 							<div class='cart-sec simpleCart_shelfItem'>
 									<div class='cart-item cyc'>
-										<img src='../images/".$data[$i]["imagem"]."' class='img-responsive' alt=''/>
+										<img src='./images/".$data[$i]["imagem"]."' class='img-responsive' alt=''/>
 									</div>
 								<div class='cart-item-info'>
 										<h3><a href='single.php?itemid=".$data[$i]["id"]."'>".$data[$i]["nome"]."</a><span>".$data[$i]["descricao"]."</span></h3>
@@ -372,8 +336,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						foreach($dados->cServico as $linhas) {
 							if($linhas->Erro == 0) {
 
-								if($linhas->Codigo == '40010') $codigoServico = 'Sedex: --- ';
-								else $codigoServico = 'PAC: ------ ';
+								if($linhas->Codigo == '40010'){
+									$codigoServico = 'Sedex: --- ';
+									$cvalue = $dadosCep[0]."_".str_replace(",", ".", $linhas->Valor)."_2";
+								}else{
+									$codigoServico = 'PAC: ------ ';
+									$cvalue = $dadosCep[0]."_".str_replace(",", ".", $linhas->Valor)."_1";
+								} 
 
 								echo "
 								<div class='radio'>
@@ -382,13 +351,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<script>
 										document.getElementById('opt1".$countOps."').onclick = function(){
 											var cname = '1AMM-CEPX002';
-											var cvalue = ''+".$dadosCep[0]."+'_'+'".str_replace(",", ".", $linhas->Valor)."';
+											var cvalue = '".$cvalue."';
 											var d = new Date();
 											d.setTime(d.getTime() + (60*60*1000));
 											var expires = 'expires='+ d.toUTCString();
 											document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
-
-											document.cookie = '1AMM-REDIRECT' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
 											location.reload();
 										}
@@ -422,8 +389,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										var expires = 'expires='+ d.toUTCString();
 										document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
 
-										document.cookie = '1AMM-REDIRECT' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-
 										location.reload();
 									}
 								</script>
@@ -449,14 +414,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<a class='order' href='#' id='endPurchaseClick'>Finalizar compra</a>
 					<script>
 						document.getElementById('endPurchaseClick').onclick = function(){
-							var cname = '1AMM-REDIRECT';
-							var cvalue = 'TRUE0039348c8cj82';
-							var d = new Date();
-							d.setTime(d.getTime() + (60*60*1000));
-							var expires = 'expires='+ d.toUTCString();
-							document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+							if( getCookie('1AMM-CEPX002') != '' ){
+								var cepX_ = getCookie('1AMM-CEPX002').split('_');
+								if(cepX_[1] != '0.0'){
+									if( getCookie('1AMM-CV002') != '' ){
+										window.location.href='./endPurchase.php';	
+									}else{
+										alert('Você precisar estar logado para finalizar a compra!');
+										window.location.href='./login.php';	
+									}
+								}else{
+									alert('Selecione antes uma forma de entrega para finalizar a compra!');
+								}
+							}else{
+								alert('Insirira antes o CEP para finalizar a compra!');
+							}
+						}
 
-							location.reload();
+						function getCookie(cname) {
+							var name = cname + '=';
+							var decodedCookie = decodeURIComponent(document.cookie);
+							var ca = decodedCookie.split(';');
+							for(var i = 0; i <ca.length; i++) {
+								var c = ca[i];
+								while (c.charAt(0) == ' ') {
+									c = c.substring(1);
+								}
+								if (c.indexOf(name) == 0) {
+									return c.substring(name.length, c.length);
+								}
+							}
+							return '';
 						}
 					</script>
 					";

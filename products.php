@@ -450,7 +450,7 @@ amet consectetuer </a></h6>
 							echo " 
 							<div class='col-md-4 bottom-cd simpleCart_shelfItem'>
 							<div class='product-at '>
-								<a href='./single.php?itemid=".$row["produtoId"]."' id='viewProduct".$count2."'><img class='img-responsive' src='images/" . $row["imagem1"]. "' alt='' style='height:200px; width:300px'>
+								<a href='./single.php?itemid=".$row["produtoId"]."' id='viewProduct".$count2."'><img class='img-responsive' src='images/".$row["imagem1"]."' alt='' style='height:200px; width:300px'>
 								<div class='pro-grid'>
 											<span class='buy-in'>Visualizar produto</span>
 								</div>

@@ -1,8 +1,11 @@
-
+<?php
+unset($_COOKIE['1AMM-REDIRECT']);
+setcookie('1AMM-REDIRECT', '', time() - 3600, '/'); 
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Register :: w3layouts</title>
+<title>AMM Eletricista</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -184,16 +187,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	
 <!--content-->
+<div class="container">
 <div class="register">
 	<h1>Finalizar Compra</h1>
-		<form method="POST" action="./php/register.php"> 
+		<form method="POST" action="./php/endPurchase.php"> 
 		<div class="form-row">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-12">
 				<h3>Dados Local Entrega</h3><br>
+
 				<div class="form-row">
 					<div class="form-group col-md-12">
-						<label for="inputEndereço">Endereço</label>
-						<input type="text" class="form-control" name="inputEndereço" id="inputEndereço" placeholder="Rua B" required autofocus>
+						<button type="button" class="btn btn-info btn-sm" name="useAdress" id="useAdress">Usar meus dados</button>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="inputEndereco">Endereço</label>
+						<input type="text" class="form-control" name="inputEndereco" id="inputEndereco" placeholder="Rua B" required autofocus>
 					</div>
 				</div>
 				<div class="form-row">
@@ -249,14 +260,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" class="form-control" name="inputCEP" id="inputCEP" placeholder="CEP" required>
 					</div>
 				</div>
+				
 				<div class="form-row">
-					<div class="form-group col-md-12">
-						<button type="button" class="btn btn-warning btn-sm" name="useAdress" id="useAdress">Usar meu endereço</button>
+					<div class="form-group col-md-6 col-md-offset-3">
+						<button type="submit" class="btn btn-warning btn-lg btn-block" name="clickEND" id="clickEND">Finalizar Compra</button>
 					</div>
 				</div>
 			</div>
 		
-			<div class="form-group col-md-6">
+			<!--div class="form-group col-md-6">
 				<h3>Dados Pagamento</h3><br>
 				<div class="form-row">
 					<div class="form-group col-md-4">
@@ -282,31 +294,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</select>
 						</div>
 						<div class="form-group col-md-9">
-							<label for="inputCpfPagante">Número do Cartão</label>
-							<input type="text" class="form-control" name="inputCpfPagante" id="inputCpfPagante" placeholder="CPF" required>
+							<label for="inputCardNumber">Número do Cartão</label>
+							<input type="text" class="form-control" name="inputCardNumber" id="inputCardNumber" placeholder="CPF">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-12">
-							<label for="inputCpfPagante">Nome Impresso no Cartão</label>
-							<input type="text" class="form-control" name="inputCpfPagante" id="inputCpfPagante" placeholder="CPF" required>
+							<label for="inputCardName">Nome Impresso no Cartão</label>
+							<input type="text" class="form-control" name="inputCardName" id="inputCardName" placeholder="CPF">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="inputCpfPagante">Data Vencimento</label>
-							<input type="text" class="form-control" name="inputCpfPagante" id="inputCpfPagante" placeholder="CPF" required>
+							<label for="inputExpireDate">Data Vencimento</label>
+							<input type="text" class="form-control" name="inputExpireDate" id="inputExpireDate" placeholder="CPF">
 						</div>
 						<div class="form-group col-md-6">	
-							<label for="inputCpfPagante">Digito Verificador</label>
-							<input type="text" class="form-control" name="inputCpfPagante" id="inputCpfPagante" placeholder="CPF" required>
+							<label for="inputCV">Digito Verificador</label>
+							<input type="text" class="form-control" name="inputCV" id="inputCV" placeholder="CPF">
 						</div>
 					</div>
+					
 				</div>
-			</div>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<button type="submit" class="btn btn-warning btn-lg btn-block" name="clickEND" id="clickEND">Finalizar Compra</button>
+					</div>
+				</div>
+			</div-->
 				<div class="clearfix"> </div>
 		</div>
 		</form>
+</div>
 </div>
 
 <!--//content-->

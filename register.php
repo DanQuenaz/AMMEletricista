@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Register :: w3layouts</title>
+<title>AMM Eletricista</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -270,7 +270,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="form-group col-md-9">
 							<label for="cep">CEP</label>
-							<input type="text"  class="form-control" name="cep" id="cep" placeholder="xx.xxx-xxx" required>
+							<input type="text"  class="form-control" name="cep" id="cep" maxlength="8" mask="99999-999" placeholder="xx.xxx-xxx" required>
 						</div>
 					</div>
 

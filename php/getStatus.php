@@ -4,7 +4,9 @@
 	if(isset($_GET['reference'])){
 		$PagSeguro = new PagSeguro();
 		$P = $PagSeguro->getStatusByReference($_GET['reference']);
-		echo $PagSeguro->getStatusText($P->status);
+		echo 'Status: '.(int)$P;
+		if($P != NULL) echo $PagSeguro->getStatusText((int)$P);
+		else echo "NULL";
 	}else{
 	    echo "Parâmetro \"reference\" não informado!";
 	}
