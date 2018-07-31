@@ -83,6 +83,10 @@ class PagSeguro{
 			else $data['itemShippingCost'.($i+1)] = '0.00';
 
 			$this->totalPreco_ += $itens_[$i]['preco'] * $itens_[$i]['quant'];
+
+			$sql = "INSERT INTO `pedidosprodutos` (`pedidoId`, `produtoId`, `quantidade`) VALUES ('".$dados['codigo']."', '".$itens_[$i]['id']."', '".$itens_[$i]['quant']."');";
+
+			$this->conn->query($sql);
 		}
 
 		

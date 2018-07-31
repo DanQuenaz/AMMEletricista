@@ -190,53 +190,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class=" container">
 <div class=" register">
 	<?php
-		if( !isset($_COOKIE["1AMM-CV002"]) ){
-
+		if( !isset($_GET["transaction_id"]) ){
+            echo "Pedido não encontrado";
 		}else{
-			$dados = explode(",", $_COOKIE["1AMM-CV002"]);
-			$sql = "SELECT * FROM usuarios WHERE usuarioId = ".$dados[1].";";
+			$sql = "SELECT * FROM pedidos WHERE pedidoId = '".$_GET['transaction_id']."' OR codigoPs = '".$_GET['transaction_id']."';";
 			$result = $conn->query($sql);
 			if( $result->num_rows > 0 ){
 				$row = $result->fetch_assoc();
-
-				$sql2 = "SELECT COUNT(pedidoId) FROM pedidos WHERE usuarioId = ".$dados[1].";";
-				$result2 = $conn->query($sql2);
-				$row2 = $result2->fetch_assoc();
-
 				echo"
 				<div class='col-md-6 register-top-grid'>
-					<h3>".$row["primeiroNome"]." ".$row["sobreNome"]."</h3><br>
-					<h4>Endereço para entrega: </h4>
-					<span><h4>".$row["endereco"].", ".$row["bairro"].", ".$row["cidade"]." - ".$row["estado"]."</h4></span><br>
-					<h4>Total de pedidos: <span>".$row2["COUNT(pedidoId)"]."</span></4><br>
+					<h3>PEDIDO Nº ".$row["pedidoId"]."</h3><br>
+					<h4>Status da compra: </h4>
+					<span><h4>".$row["status_"]."</h4></span><br>
+					<h4>Status da entrega: <span>".$row["status_entrega"]."</span></4><br>
 
-					<a href='./editClient.php' class='btn btn-warning'>Editar dados</a>
-					<a href='#' class='btn btn-danger'>Sair</a>
+					<a href='./loged.php' class='btn btn-warning'>Votar</a>
 					
 				</div>
 				<div class='col-md-6 register-bottom-grid'>
-					<h4>Pedidos Realizados</h4><br>
+					<h4>Produtos do Pedido</h4><br>
 					<table class='table table-striped'>
 						<thead>
 							<tr>
-							<th scope='col'>Pedido ID</th>
-							<th scope='col'>Valor</th>
-							<th scope='col'>Total de Itens</th>
-							<th scope='col'>Status do Pedido</th>
+							<th scope='col'>Produto ID</th>
+							<th scope='col'>Nome</th>
+							<th scope='col'>Quantidade</th>
+							<th scope='col'>Valor Unitário</th>
 							</tr>
 						</thead>
 						<tbody>
 				";
-				$sql3 = "SELECT * FROM pedidos WHERE usuarioId = ".$dados[1].";";
+				$sql3 = "SELECT * FROM pedidosprodutos WHERE pedidoId = ".$row['pedidoId'].";";
 				$result3 = $conn->query($sql3);
 				if($result3->num_rows > 0){
 					while($row3 = $result3->fetch_assoc()){
+                        $sql4 = "SELECT * FROM produtos WHERE produtoId = ".$row3["produtoId"].";";
+                        $result4 = $conn->query($sql4);
+                        $row4 = $result4->fetch_assoc();
 						echo"
 						<tr>
-						<th scope='row'><a href='./statusview.php?transaction_id=".$row3["pedidoId"]."'>".$row3["pedidoId"]."</a></th>
-							<td>".$row3["preco_total"]."</td>
-							<td>".$row3["numero_produtos"]."</td>
-							<td>".$row3["status_"]."</td>
+                            <th scope='row'><a href='./single.php?itemid=".$row3["produtoId"]."'>".$row3["produtoId"]."</a></th>
+                            <th><a href='./single.php?itemid=".$row3["produtoId"]."'>".$row4["nome"]."</a></th>
+							<td>".$row3["quantidade"]."</td>
+							<td>R$ ".$row4["preco"]."</td>
 						</tr>
 						";
 					}
@@ -260,50 +256,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--//content-->
 <div class="footer">
-				<div class="container">
-			<div class="footer-top-at">
-			
-				<div class="col-md-4 amet-sed">
+	<div class="container">
+		<div class="footer-top-at">
+			<div class="col-md-4 amet-sed">
 				<h4>MORE INFO</h4>
 				<ul class="nav-bottom">
-						<li><a href="#">How to order</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="contact.php">Location</a></li>
-						<li><a href="#">Shipping</a></li>
-						<li><a href="#">Membership</a></li>	
-					</ul>	
-				</div>
-				<div class="col-md-4 amet-sed ">
-				<h4>CONTACT US</h4>
-				
-					<p>
-Contrary to popular belief</p>
-					<p>The standard chunk</p>
-					<p>office:  +12 34 995 0792</p>
-					<ul class="social">
-						<li><a href="#"><i> </i></a></li>						
-						<li><a href="#"><i class="twitter"> </i></a></li>
-						<li><a href="#"><i class="rss"> </i></a></li>
-						<li><a href="#"><i class="gmail"> </i></a></li>
-						
-					</ul>
-				</div>
-				<div class="col-md-4 amet-sed">
-					<h4>Newsletter</h4>
-					<p>Sign Up to get all news update
-and promo</p>
-					<form>
-						<input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-						<input type="submit" value="Sign up">
-					</form>
-				</div>
-				<div class="clearfix"> </div>
+                    <li><a href="#">How to order</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="contact.php">Location</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Membership</a></li>	
+                </ul>	
 			</div>
+			<div class="col-md-4 amet-sed ">
+				<h4>CONTACT US</h4>
+                <p>Contrary to popular belief</p>
+                <p>The standard chunk</p>
+                <p>office:  +12 34 995 0792</p>
+                <ul class="social">
+                    <li><a href="#"><i> </i></a></li>						
+                    <li><a href="#"><i class="twitter"> </i></a></li>
+                    <li><a href="#"><i class="rss"> </i></a></li>
+                    <li><a href="#"><i class="gmail"> </i></a></li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-4 amet-sed">
+                <h4>Newsletter</h4>
+                <p>Sign Up to get all news update and promo</p>
+                <form>
+                    <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+                    <input type="submit" value="Sign up">
+                </form>
+            </div>
+			<div class="clearfix"> </div>
+		</div>
 		</div>
 		<div class="footer-class">
-		<p >© 2015 New store All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-		</div>
-		</div>
+		<p >© 2015 New store All Rights Reserved | Design by  <a href="http://atlasjr.com.br/" target="_blank">Atlas Jr</a> </p>
+	</div>
+</div>
 
 <!--SCRIPTS-->
 <script type="module" src="./js/checkCart.js"></script>

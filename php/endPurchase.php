@@ -9,17 +9,20 @@ require_once("./PagSeguro.class.php");
 $PagSeguro = new PagSeguro();
 
 
+
+
 $sql = "SELECT `AUTO_INCREMENT`
 FROM  INFORMATION_SCHEMA.TABLES
-WHERE TABLE_SCHEMA = 'ammaletricista'
+WHERE TABLE_SCHEMA = 'ammeletricista'
 AND   TABLE_NAME   = 'pedidos';";
-
-//AQUISIÇÂO VARIAVEIS
-$dataUser_ = json_decode($_COOKIE['1AMM-AX_DATAUSER_'], true);
 
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $_codigo = $row['AUTO_INCREMENT'];
+
+
+//AQUISIÇÂO VARIAVEIS
+$dataUser_ = json_decode($_COOKIE['1AMM-AX_DATAUSER_'], true);
 
 $_nome = $dataUser_['nome'];
 $_email = $dataUser_['email'];
