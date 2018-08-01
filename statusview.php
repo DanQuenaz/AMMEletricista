@@ -259,7 +259,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<div class="footer-top-at">
 			<div class="col-md-4 amet-sed">
-				<h4>MORE INFO</h4>
+				<h4>MAIS INFORMAÇÕES</h4>
 				<ul class="nav-bottom">
                     <li><a href="#">How to order</a></li>
                     <li><a href="#">FAQ</a></li>
@@ -269,7 +269,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </ul>	
 			</div>
 			<div class="col-md-4 amet-sed ">
-				<h4>CONTACT US</h4>
+				<h4>FALE CONOSCO</h4>
                 <p>Contrary to popular belief</p>
                 <p>The standard chunk</p>
                 <p>office:  +12 34 995 0792</p>
@@ -282,8 +282,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </ul>
             </div>
             <div class="col-md-4 amet-sed">
-                <h4>Newsletter</h4>
-                <p>Sign Up to get all news update and promo</p>
+                <h4>PROMOÇÕES</h4>
+                <p>Cadastre seu email para receber nossas promoções</p>
                 <form>
                     <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
                     <input type="submit" value="Sign up">
@@ -293,7 +293,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 		<div class="footer-class">
-		<p >© 2015 New store All Rights Reserved | Design by  <a href="http://atlasjr.com.br/" target="_blank">Atlas Jr</a> </p>
+		<p >© 2018 | Desenvolvido por  <a href="http://atlasjr.com.br/" target="_blank">Atlas Soluções em Tecnologia</a> </p>
 	</div>
 </div>
 

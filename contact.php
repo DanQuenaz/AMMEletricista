@@ -1,9 +1,4 @@
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -188,97 +183,91 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	
 <!--content-->
-<div class="contact">
-			
-			<div class="container">
-				<h1>Contact</h1>
-			<div class="contact-form">
-				
-				<div class="col-md-8 contact-grid">
-					<form>	
-						<input type="text" value="Name" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Name';}">
-					
-						<input type="text" value="Email" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Email';}">
-						<input type="text" value="Subject" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Subject';}">
-						
-						<textarea cols="77" rows="6" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
-						<div class="send">
-							<input type="submit" value="Send">
-						</div>
-					</form>
-				</div>
-				<div class="col-md-4 contact-in">
+<div class="contact">		
+	<div class="container">
+		<h1>Contato</h1>
+		<div class="contact-form">
+			<div class="col-md-8 contact-grid">
+				<form>
+					<label for="inputName">Seu nome</label>
+					<input type="text" step="0" class="form-control" name="inputName" id="inputName" placeholder="Nome" required><br>
 
-						<div class="address-more">
-						<h4>Address</h4>
-							<p>The company name,</p>
-							<p>Lorem ipsum dolor,</p>
-							<p>Glasglow Dr 40 Fe 72. </p>
-						</div>
-						<div class="address-more">
-						<h4>Address1</h4>
-							<p>Tel:1115550001</p>
-							<p>Fax:190-4509-494</p>
-							<p>Email:<a href="mailto:contact@example.com"> contact@example.com</a></p>
-						</div>
-					
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="map">
-				
+					<label for="inputEmail">Seu email</label>
+					<input type="text" step="0" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" required><br>
 
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60120.517758909766!2d-43.263083541345424!3d-19.64728066111653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa5a113d676be4b%3A0xa1b1df8c51582d7!2sItabira%2C+MG%2C+Brasil!5e0!3m2!1spt-BR!2sin!4v1533054943571" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+					<label for="inputAssunto">Assunto</label>
+					<input type="text" step="0" class="form-control" name="inputAssunto" id="inputAssunto" placeholder="Assunto" required><br>
+					
+					<label for="inputMensagem">Mensagem</label>
+					<textarea class="form-control" name="inputMensagem" id="inputMensagem" rows="3" required></textarea><br>
+					
+					<button type="submit" class="btn btn-warning" name="inputEnviar" id="inputEnviar">Enviar</button>
+				</form>
 			</div>
+			<div class="col-md-4 contact-in">
+				<div class="address-more">
+					<h4>Endereço</h4>
+					<p>AMM ELETRICISTA,</p>
+					<p>Itabira,</p>
+					<p>Rua x. </p>
+				</div>
+				<div class="address-more">
+					<h4>Contatos</h4>
+					<p>Tel:1115550001</p>
+					<p>Fax:190-4509-494</p>
+					<p>Email:<a href="mailto:contact@example.com"> contact@example.com</a></p>
+				</div>	
+			</div>
+			<div class="clearfix"> </div>
 		</div>
-		
-	</div>
+		<div class="map">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60120.517758909766!2d-43.263083541345424!3d-19.64728066111653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa5a113d676be4b%3A0xa1b1df8c51582d7!2sItabira%2C+MG%2C+Brasil!5e0!3m2!1spt-BR!2sin!4v1533054943571" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+	</div>	
+</div>
+
 <!--//content-->
 <div class="footer">
-				<div class="container">
-			<div class="footer-top-at">
-			
-				<div class="col-md-4 amet-sed">
-				<h4>MORE INFO</h4>
+	<div class="container">
+		<div class="footer-top-at">
+			<div class="col-md-4 amet-sed">
+				<h4>MAIS INFORMAÇÕES</h4>
 				<ul class="nav-bottom">
-						<li><a href="#">How to order</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="contact.php">Location</a></li>
-						<li><a href="#">Shipping</a></li>
-						<li><a href="#">Membership</a></li>	
-					</ul>	
-				</div>
-				<div class="col-md-4 amet-sed ">
-				<h4>CONTACT US</h4>
-				
-					<p>
-Contrary to popular belief</p>
-					<p>The standard chunk</p>
-					<p>office:  +12 34 995 0792</p>
-					<ul class="social">
-						<li><a href="#"><i> </i></a></li>						
-						<li><a href="#"><i class="twitter"> </i></a></li>
-						<li><a href="#"><i class="rss"> </i></a></li>
-						<li><a href="#"><i class="gmail"> </i></a></li>
-						
-					</ul>
-				</div>
-				<div class="col-md-4 amet-sed">
-					<h4>Newsletter</h4>
-					<p>Sign Up to get all news update
-and promo</p>
-					<form>
-						<input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-						<input type="submit" value="Sign up">
-					</form>
-				</div>
-				<div class="clearfix"> </div>
+                    <li><a href="#">How to order</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="contact.php">Location</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Membership</a></li>	
+                </ul>	
 			</div>
+			<div class="col-md-4 amet-sed ">
+				<h4>FALE CONOSCO</h4>
+                <p>Contrary to popular belief</p>
+                <p>The standard chunk</p>
+                <p>office:  +12 34 995 0792</p>
+                <ul class="social">
+                    <li><a href="#"><i> </i></a></li>						
+                    <li><a href="#"><i class="twitter"> </i></a></li>
+                    <li><a href="#"><i class="rss"> </i></a></li>
+                    <li><a href="#"><i class="gmail"> </i></a></li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-4 amet-sed">
+                <h4>PROMOÇÕES</h4>
+                <p>Cadastre seu email para receber nossas promoções</p>
+                <form>
+                    <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+                    <input type="submit" value="Sign up">
+                </form>
+            </div>
+			<div class="clearfix"> </div>
+		</div>
 		</div>
 		<div class="footer-class">
-		<p >© 2015 New store All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-		</div>
-		</div>
+		<p >© 2018 | Desenvolvido por  <a href="http://atlasjr.com.br/" target="_blank">Atlas Soluções em Tecnologia</a> </p>
+	</div>
+</div>
 
 
 <!--SCRIPTS-->

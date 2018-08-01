@@ -382,7 +382,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="col-md-4 amet-sed">
                 <h4>PROMOÇÕES</h4>
-                <p>Sign Up to get all news update and promo</p>
+                <p>Cadastre seu email para receber nossas promoções</p>
                 <form>
                     <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
                     <input type="submit" value="Sign up">
@@ -392,7 +392,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 		<div class="footer-class">
-		<p >© 2018 | Desenvolvido por  <a href="http://atlasjr.com.br/" target="_blank">Atlas Jr</a> </p>
+		<p >© 2018 | Desenvolvido por  <a href="http://atlasjr.com.br/" target="_blank">Atlas Soluções em Tecnologia</a> </p>
 	</div>
 </div>
 
