@@ -1,4 +1,4 @@
-import * as Data from './dataCart';
+import * as Data from './dataCart.js';
 
 //Funções página
 

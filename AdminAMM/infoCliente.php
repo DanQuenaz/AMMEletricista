@@ -9,7 +9,7 @@
       alert('Você precisa estar logado para acessar essa página!');
   </script>";
   } else {
-
+    setcookie("0AMM-LG000", $_COOKIE["0AMM-LG000"], time()+3600);
   }
 ?>
 <html lang="en">

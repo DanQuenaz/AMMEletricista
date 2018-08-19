@@ -1,5 +1,5 @@
 
-import * as Data from './dataCart';
+import * as Data from './dataCart.js';
 
 Data.loadCart();
 Data.updateCart();

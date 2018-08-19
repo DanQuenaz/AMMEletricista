@@ -9,7 +9,7 @@
       alert('Você precisa estar logado para acessar essa página!');
   </script>";
   } else {
-
+    setcookie("0AMM-LG000", $_COOKIE["0AMM-LG000"], time()+3600);
   }
 ?>
 
@@ -148,13 +148,13 @@
                     $sql = "SELECT * FROM produtos";
                   }else{
                     if($params[0]=="1"){
-                      $sql = "SELECT * FROM produtos WHERE produtoId LIKE '%".$params[1]."%';";
+                      $sql = "SELECT * FROM produtos WHERE LOWER(produtoId) LIKE LOWER('%".$params[1]."%');";
                     }else if($params[0]=="2"){
-                      $sql = "SELECT * FROM produtos WHERE nome LIKE '%".$params[1]."%';";
+                      $sql = "SELECT * FROM produtos WHERE LOWER(nome) LIKE LOWER('%".$params[1]."%');";
                     }else if($params[0]=="3"){
-                      $sql = "SELECT * FROM produtos WHERE categoria LIKE '%".$params[1]."%';";
+                      $sql = "SELECT * FROM produtos WHERE LOWER(categoria) LIKE LOWER('%".$params[1]."%');";
                     }else if($params[0]=="4"){
-                      $sql = "SELECT * FROM produtos WHERE subcategoria LIKE '%".$params[1]."%';";
+                      $sql = "SELECT * FROM produtos WHERE LOWER(subcategoria) LIKE LOWER('%".$params[1]."%');";
                     }else{
                       $sql = "SELECT * FROM produtos";
                     }
@@ -169,26 +169,15 @@
                     
                     echo " 
                       <tr>
-                        <th scope=\"row\">". $row["produtoId"]. "</th>
-                        <td>". $row["nome"]. "</td>
-                        <td>". $row["preco"]. "</td>
-                        <td>". $row["categoria"]. "</td>
-                        <td>". $row["subcategoria"]. "</td>
-                        <td>". $row["descricaoSimples"]. "</td>
-                        <td>". $row["descricaoCompleta"]. "</td>
-                        <td><button type=\"button\" class=\"btn btn-primary\" id=\"atlzProduto".$count."\">Editar</button></td>
-                      </tr>
-                      <script>
-                        document.getElementById('atlzProduto".$count."').onclick = function() {
-                          var cname = \"0AMM-CE001\";
-                          var cvalue = ". $row["produtoId"]. ";
-                          var d = new Date();
-                          d.setTime(d.getTime() + (10*60*1000));
-                          var expires = \"expires=\"+ d.toUTCString();
-                          document.cookie = cname + \"=\" + cvalue + \";\" + expires + \";path=/\";;
-                          window.open(\"./editProduto.php\",\"_self\");
-                        };
-                      </script>";
+                        <th scope='row'>".$row["produtoId"]. "</th>
+                        <td>".$row["nome"]."</td>
+                        <td>".$row["preco"]."</td>
+                        <td>".$row["categoria"]."</td>
+                        <td>".$row["subcategoria"]."</td>
+                        <td>".$row["descricaoSimples"]."</td>
+                        <td>".$row["descricaoCompleta"]."</td>
+                        <td><a href='./editProduto?productid=".$row["produtoId"]."' class='btn btn-primary'>Editar</a></td>
+                      </tr>;";
                       $count = $count+1;
                     
                   }

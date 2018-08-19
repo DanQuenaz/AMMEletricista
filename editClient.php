@@ -72,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
 						<script type="module">
-							import * as DATA from './js/dataCart';
+							import * as DATA from './js/dataCart.js';
 							document.getElementById('checkoutClick').onclick = function(){
 								DATA.loadCart();
 								DATA.saveCartCookie();
@@ -231,7 +231,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class='form-group col-md-2'>
 							<label for='number'>Numero</label>
-							<input type='number' class='form-control' name='number' id='number' placeholder='' required>
+							<input type='number' class='form-control' name='number' id='number' placeholder='' value='".$row["numero"]."' required>
 						</div>
 					</div>
 

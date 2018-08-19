@@ -9,7 +9,7 @@
       alert('Você precisa estar logado para acessar essa página!');
   </script>";
   } else {
-
+    setcookie("0AMM-LG000", $_COOKIE["0AMM-LG000"], time()+3600);
   }
 ?>
 <html lang="en">
@@ -177,15 +177,19 @@
         <form method="POST" action="./php/atualizaStatus.php" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-4">
+                    <label for="inputAtlzStatus">Status Entrega</label>
                     <select name="inputAtlzStatus" id="inputAtlzStatus" class="form-control">
-                        <option selected>Pendente</option>
+                        <option selected>Aguardando para envio</option>
                         <option>Enviado</option>
-                        <option>Finalizado</option>
                     </select>
                 </div>
-                <div class="form-group col-md-4">
-                    <button type="submit" class="btn btn-secondary" name="atlzStatus" id="atlzStatus">Atualizar</button>
+                <div class="form-group col-md-4" id="cdgRast" style="display:none">
+                    <label for="inputRastreio">Código Rastreio</label>
+                    <input type="text" class="form-control" name="inputRastreio" id="inputRastreio" placeholder="Código Rastreio" required>
                 </div>
+            </div>
+            <div class="form-group col-md-4">
+                <button type="submit" class="btn btn-secondary" name="atlzStatus" id="atlzStatus">Atualizar</button>
             </div>
         </form>
 
@@ -199,6 +203,7 @@
     <!-- Custom JavaScript for this theme -->
     <script src="js/scrolling-nav.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/infoPedido.js"></script>
 
   </body>
 

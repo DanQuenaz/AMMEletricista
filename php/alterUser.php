@@ -8,6 +8,7 @@
     $state = $_POST['stateName'];
     $city = $_POST['cityName'];
     $address = $_POST['address'];
+    $number = $_POST['number'];
     $bairro = $_POST['bairroName'];
     $cep = $_POST['cep'];
     $tel = $_POST['tel'];
@@ -24,11 +25,11 @@
                 if($password == $passwordConfirm){
                     if($password != "-1-1-1-1-1-"){
                         $sql = "UPDATE usuarios
-                        SET primeiroNome='".$firstName."', sobreNome='".$lastName."', cpf='".$cpf."', estado='".$state."', cidade='".$city."', endereco='".$address."', bairro='".$bairro."', email='".$email."', senha='".md5($password)."', telefone='".$tel."', nomeCompleto='".$firstName." ".$lastName."', cep='".$cep."'
+                        SET primeiroNome='".$firstName."', sobreNome='".$lastName."', cpf='".$cpf."', estado='".$state."', cidade='".$city."', endereco='".$address."', numero='".$number."', bairro='".$bairro."', email='".$email."', senha='".md5($password)."', telefone='".$tel."', nomeCompleto='".$firstName." ".$lastName."', cep='".$cep."'
                         WHERE usuarioId = ".$dados[1].";";
                     }else{
                         $sql = "UPDATE usuarios
-                        SET primeiroNome='".$firstName."', sobreNome='".$lastName."', cpf='".$cpf."', estado='".$state."', cidade='".$city."', endereco='".$address."', bairro='".$bairro."', email='".$email."', telefone='".$tel."', nomeCompleto='".$firstName." ".$lastName."', cep='".$cep."'
+                        SET primeiroNome='".$firstName."', sobreNome='".$lastName."', cpf='".$cpf."', estado='".$state."', cidade='".$city."', endereco='".$address."', numero='".$number."', bairro='".$bairro."', email='".$email."', telefone='".$tel."', nomeCompleto='".$firstName." ".$lastName."', cep='".$cep."'
                         WHERE usuarioId = ".$dados[1].";";
                     }
                     

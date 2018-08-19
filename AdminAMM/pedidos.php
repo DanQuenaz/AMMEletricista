@@ -9,7 +9,7 @@
       alert('Você precisa estar logado para acessar essa página!');
   </script>";
   } else {
-
+    setcookie("0AMM-LG000", $_COOKIE["0AMM-LG000"], time()+3600);
   }
 ?>
 <html lang="en">
@@ -133,11 +133,11 @@
                     $sql = "SELECT * FROM pedidos";
                   }else{
                     if($params[0]=="1"){
-                      $sql = "SELECT * FROM pedidos WHERE pedidoId LIKE '%".$params[1]."%';";
+                      $sql = "SELECT * FROM pedidos WHERE LOWER(pedidoId) LIKE LOWER('%".$params[1]."%');";
                     }else if($params[0]=="2"){
-                      $sql = "SELECT * FROM pedidos WHERE usuarioId LIKE '%".$params[1]."%';";
+                      $sql = "SELECT * FROM pedidos WHERE LOWER(usuarioId) LIKE LOWER('%".$params[1]."%');";
                     }else if($params[0]=="3"){
-                      $sql = "SELECT * FROM pedidos WHERE status_ LIKE '%".$params[1]."%';";
+                      $sql = "SELECT * FROM pedidos WHERE LOWER(status_) LIKE LOWER('%".$params[1]."%');";
                     }else{
                       $sql = "SELECT * FROM pedidos";
                     }

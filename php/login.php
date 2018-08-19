@@ -25,6 +25,7 @@
             $dataUser['nome'] = $row['nomeCompleto'];
             $dataUser['cpf'] = $row['cpf'];
             $dataUser['endereco'] = $row['endereco'];
+            $dataUser['numero'] = $row['numero'];
             $dataUser['bairro'] = $row['bairro'];
             $dataUser['cidade'] = $row['cidade'];
             $dataUser['estado'] = $row['estado'];

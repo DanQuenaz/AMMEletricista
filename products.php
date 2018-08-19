@@ -73,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
 						<script type="module">
-							import * as DATA from './js/dataCart';
+							import * as DATA from './js/dataCart.js';
 							document.getElementById('checkoutClick').onclick = function(){
 								DATA.loadCart();
 								DATA.saveCartCookie();

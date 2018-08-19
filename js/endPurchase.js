@@ -26,6 +26,7 @@ useDataUser.onclick = function(){
     var dataUser = JSON.parse( getCookie('1AMM-AX_DATAUSER_') );
     if(_dadosCep[0] == dataUser['cep']){
         document.getElementById('inputEndereco').value = dataUser['endereco'];
+        document.getElementById('inputNumero').value = dataUser['numero'];
         document.getElementById('inputBairro').value = dataUser['bairro'];
         document.getElementById('inputCidade').value = dataUser['cidade'];
         document.getElementById('inputEstado').value = dataUser['estado'];

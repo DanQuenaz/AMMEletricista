@@ -1,6 +1,6 @@
 
 -- Table: Produtos
-CREATE TABLE Produtos (
+CREATE TABLE produtos (
     produtoId int NOT NULL AUTO_INCREMENT,
     nome varchar(128) NOT NULL,
     preco float NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE Produtos (
 );
 
 -- Table: Usuario
-CREATE TABLE Usuarios (
+CREATE TABLE usuarios (
     usuarioId int NOT NULL AUTO_INCREMENT,
     primeiroNome varchar(64) NOT NULL,
     sobreNome varchar(64) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE Usuarios (
 );
 
 -- Table: Endereços
-CREATE TABLE Enderecos(
+CREATE TABLE enderecos(
     enderecoId int NOT NULL AUTO_INCREMENT,
     usuarioId int NOT NULL,
     endereco varchar(1000) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE Enderecos(
 );
 
 -- Table: Pedidos
-CREATE TABLE Pedidos (
+CREATE TABLE pedidos (
     pedidoId int NOT NULL AUTO_INCREMENT,
     numero_produtos int NOT NULL,
     preco_total float NOT NULL,
@@ -63,23 +63,25 @@ CREATE TABLE Pedidos (
     status_ varchar(64) NOT NULL,
     hora_compra timestamp NOT NULL,
     usuarioId int NOT NULL,
+    codigoPs varchar(128) NOT NULL,
+    status_entrega varchar(128) NOT NULL,
 
     PRIMARY KEY (pedidoId),
     FOREIGN KEY (usuarioId) REFERENCES Usuarios (usuarioId)
 );
 
---Table: PedidosProdutos
-CREATE TABLE PedidosProdutos (
+-- Table: PedidosProdutos
+CREATE TABLE pedidosprodutos (
     pedidoId int NOT NULL,
     produtoId int NOT NULL,
     quantidade int NOT NULL,
     
     FOREIGN KEY (pedidoId) REFERENCES Pedidos (pedidoId),
-    FOREIGN KEY (produtoId) REFERENCES Produtos (produtoId),
+    FOREIGN KEY (produtoId) REFERENCES Produtos (produtoId)
 );
 
 -- Table: Fornecedores
-CREATE TABLE Fornecedores (
+CREATE TABLE fornecedores (
     fornecedorId int NOT NULL AUTO_INCREMENT,
     nome varchar(512) NOT NULL,
     endereco varchar(512) NOT NULL,
@@ -91,7 +93,7 @@ CREATE TABLE Fornecedores (
 );
 
 -- Table: UsuariosADM
-CREATE TABLE UsuariosADM (
+CREATE TABLE usuariosadm (
     usuarioadmId int NOT NULL AUTO_INCREMENT,
     nome varchar(64) NOT NULL,
     cpf varchar(11) NOT NULL,

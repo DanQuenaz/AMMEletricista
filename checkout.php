@@ -70,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
 						<script type="module">
-							import * as DATA from './js/dataCart';
+							import * as DATA from './js/dataCart.js';
 							document.getElementById('checkoutClick').onclick = function(){
 								DATA.loadCart();
 								DATA.saveCartCookie();
@@ -223,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class='cart-header'>
 							<a  href='#' id='x".$i."'><img src='./images/close_1.png' class='img-responsive' alt='Deletar item'/></a>
 							<script type='module'>
-							import * as DATA from './js/dataCart';
+							import * as DATA from './js/dataCart.js';
 							document.getElementById('x".$i."').onclick=function(){
 								//console.log(".$data[$i]["id"].");
 								DATA.loadCart();
